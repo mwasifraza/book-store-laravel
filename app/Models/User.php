@@ -12,33 +12,41 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    protected $table = "users";
+    protected $primaryKey = "id";
+
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
         'email',
+        'phone',
+        'username',
         'password',
+        'role',
+        'gender',
+        'avatar'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+    protected $attributes = [
+        'role' => 'user',
+        'avatar' => 'storage/user.png',
+    ];
+
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // mutators
+    // store names with first capital word
+    public function setFirstnameAttribute($value){
+        $this->attributes['firstname'] = ucwords($value);
+    }
+    public function setLastnameAttribute($value){
+        $this->attributes['lastname'] = ucwords($value);
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,7 @@ Route::get('/', function() {
     return view('home');
 });
 
-Route::get('/register', function() {
-    return view('register');
+Route::controller(RegisterController::class)->group(function(){
+    Route::get('/register', 'index')->name('register.view');
+    Route::post('/register', 'register')->name('register.action');
 });
