@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\UserDashboardController;
+use App\Http\Controllers\VerifyEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,16 @@ Route::controller(RegisterController::class)->group(function(){
     Route::post('/register', 'register')->name('register.action');
 });
 
+Route::controller(VerifyEmailController::class)->prefix('/email')->name('verification.')->group(function(){
+    // show notice and send email for verification
+    Route::get('/verify', 'notice')->middleware('auth')->name('notice');
+    // verify email
+    Route::get('/verify/{id}/{hash}', 'verify')->middleware(['auth','signed'])->name('verify');
+    // resend verification email
+    Route::post('/verification-notification', 'send')->middleware(['auth','throttle:6,1'])->name('send');
+});
+
+
 Route::controller(UserDashboardController::class)->group(function(){
-    Route::get('/dashboard', 'index')->name('dashboard');
+    Route::get('/dashboard', 'index')->name('dashboard')->middleware(['auth', 'verified']);
 });
