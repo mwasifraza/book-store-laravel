@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserLoginController;
+use App\Http\Controllers\UserDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +16,18 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-Route::get('/', function() {
-    return view('home');
+Route::controller(UserLoginController::class)->group(function(){
+    Route::get('/', 'index')->name('home.view');
+    Route::post('/', 'login')->name('login.action');
+
+    Route::get('/logout', 'logout')->name('logout');
 });
 
 Route::controller(RegisterController::class)->group(function(){
     Route::get('/register', 'index')->name('register.view');
     Route::post('/register', 'register')->name('register.action');
+});
+
+Route::controller(UserDashboardController::class)->group(function(){
+    Route::get('/dashboard', 'index')->name('dashboard');
 });

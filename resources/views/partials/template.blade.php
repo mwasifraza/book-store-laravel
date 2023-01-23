@@ -29,13 +29,16 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="/" aria-current="page">Home</a>
+                    <a class="nav-link" href="/" aria-current="page">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/register">Register</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">View</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Notification</a>
@@ -45,7 +48,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
                         <a class="dropdown-item" href="#">Settings</a>
                         <a class="dropdown-item" href="#">Help</a>
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
                 </li>
             </ul>
