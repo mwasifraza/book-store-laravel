@@ -12,6 +12,7 @@
                 <small class="form-text text-danger">
                     @error('email') {{ $message }} @enderror
                 </small>
+                <small class="form-text text-muted">please enter only valid email address, otherwise you will not be able to recover your account</small>
             </div>
 
             {{-- username --}}
@@ -21,6 +22,7 @@
                 <small class="form-text text-danger">
                     @error('username') {{ $message }} @enderror
                 </small>
+                <small class="form-text text-muted">after changing your username, your old one will become avaliable for anyone to claim</small>
             </div>
 
             <div class="d-grid">
