@@ -11,6 +11,10 @@ class UserDashboardController extends Controller
         return view('dashboard');
     }
 
+    public function settings(){
+        return view('settings', ['user' => Auth::user()]);
+    }
+
     public function logout(Request $request){
         Auth::logout();
  

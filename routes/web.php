@@ -50,6 +50,8 @@ Route::controller(LoginController::class)->middleware('guest')->group(function()
 Route::controller(UserDashboardController::class)->middleware(['auth', 'verified'])->group(function(){
     // user dashboard
     Route::get('/dashboard', 'index')->name('dashboard');
+    //settings
+    Route::get('/settings', 'settings')->name('settings');
     // logout
     Route::get('/logout', 'logout')->name('logout')->withoutMiddleware('verified');
 });

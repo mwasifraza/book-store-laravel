@@ -15,6 +15,16 @@
         -webkit-appearance: none;
         margin: 0;
     }
+    .nav-pills .nav-link{
+        color: rgba(var(--bs-dark-rgb));
+    }
+    .nav-pills .nav-link:hover{
+        color: rgba(var(--bs-dark-rgb));
+    }
+    .nav-pills .nav-link.active{
+        color: rgba(var(--bs-dark-rgb)) !important;
+        background-color: rgba(var(--bs-warning-rgb)) !important;
+    }
 </style>
 </head>
 <body>
@@ -46,7 +56,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="/settings">Settings</a>
                         <a class="dropdown-item" href="#">Help</a>
                         <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
