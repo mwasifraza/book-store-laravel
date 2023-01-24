@@ -5,6 +5,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\VerifyEmailController;
+use App\Http\Controllers\ResetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,4 +42,13 @@ Route::controller(UserDashboardController::class)->middleware(['auth', 'verified
     Route::get('/dashboard', 'index')->name('dashboard');
     // logout
     Route::get('/logout', 'logout')->name('logout')->withoutMiddleware('verified');
+});
+
+Route::controller(ResetPasswordController::class)->name('password.')->middleware('guest')->group(function(){
+    // send password reset link
+    Route::get('/forgot-password', 'request')->name('request');
+    Route::post('/forgot-password', 'email')->name('email');
+    // reset password
+    Route::get('/reset-password/{token}', 'reset')->name('reset');
+    Route::post('/reset-password', 'update')->name('update');
 });

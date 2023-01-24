@@ -23,7 +23,7 @@ Home | Book Store
                 </div>
 
                 {{-- password --}}
-                <div class="mb-3">
+                <div class="mb-2">
                     <label for="" class="form-label">Password</label>
                     <input type="password" class="form-control" name="password" id="">
                     <small class="form-text text-danger">
@@ -31,9 +31,13 @@ Home | Book Store
                     </small>
                 </div>
 
+                <div class="d-flex justify-content-end mb-4">
+                    <a href="{{ route('password.request') }}" class="text-dark text-decoration-none">Forget Password</a>
+                </div>
+
                 {{-- submit button --}}
                 <div class="d-grid">
-                    <button class="btn btn-warning">Login</button>
+                    <input type="submit" value="Login" class="btn btn-warning">
                 </div>
                 
             </form>

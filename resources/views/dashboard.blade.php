@@ -1,7 +1,7 @@
 @extends('partials.template')
 
 @push('title')
-Home | Book Store 
+User Dashboard | Book Store 
 @endpush
 
 @section('main')
