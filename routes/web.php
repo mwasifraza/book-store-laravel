@@ -54,6 +54,7 @@ Route::controller(UserDashboardController::class)->middleware(['auth', 'verified
     Route::get('/settings', 'settings')->name('settings');
     Route::post('/settings/profile', 'update_profile')->name('update.profile');
     Route::post('/settings/account', 'update_account')->name('update.account');
+    Route::post('/settings/password', 'update_password')->name('update.password');
     // logout
     Route::get('/logout', 'logout')->name('logout')->withoutMiddleware('verified');
 });
