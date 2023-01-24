@@ -35,7 +35,7 @@
                     <a class="nav-link" href="/register">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">View</a>
+                    <a class="nav-link" href="/view">View</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/dashboard">Dashboard</a>
