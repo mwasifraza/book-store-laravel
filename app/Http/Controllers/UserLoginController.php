@@ -21,14 +21,4 @@ class UserLoginController extends Controller
             'password' => 'Invalid username or password.',
         ])->onlyInput('username');
     }
-
-    public function logout(Request $request){
-        Auth::logout();
- 
-        $request->session()->invalidate();
-    
-        $request->session()->regenerateToken();
-    
-        return redirect('/');
-    }
 }

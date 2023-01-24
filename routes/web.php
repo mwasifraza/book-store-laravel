@@ -17,14 +17,12 @@ use App\Http\Controllers\VerifyEmailController;
 |
 */
 
-Route::controller(UserLoginController::class)->group(function(){
+Route::controller(UserLoginController::class)->middleware('guest')->group(function(){
     Route::get('/', 'index')->name('home.view');
     Route::post('/', 'login')->name('login.action');
-
-    Route::get('/logout', 'logout')->name('logout');
 });
 
-Route::controller(RegisterController::class)->group(function(){
+Route::controller(RegisterController::class)->middleware('guest')->group(function(){
     Route::get('/register', 'index')->name('register.view');
     Route::post('/register', 'register')->name('register.action');
 });
@@ -38,7 +36,9 @@ Route::controller(VerifyEmailController::class)->prefix('/email')->name('verific
     Route::post('/verification-notification', 'send')->middleware(['auth','throttle:6,1'])->name('send');
 });
 
-
-Route::controller(UserDashboardController::class)->group(function(){
-    Route::get('/dashboard', 'index')->name('dashboard')->middleware(['auth', 'verified']);
+Route::controller(UserDashboardController::class)->middleware(['auth', 'verified'])->group(function(){
+    // user dashboard
+    Route::get('/dashboard', 'index')->name('dashboard');
+    // logout
+    Route::get('/logout', 'logout')->name('logout')->withoutMiddleware('verified');
 });
