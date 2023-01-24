@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\UserLoginController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserDashboardController;
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\VerifyEmailController;
 use App\Http\Controllers\ResetPasswordController;
 
@@ -18,15 +19,11 @@ use App\Http\Controllers\ResetPasswordController;
 |
 */
 
-Route::controller(UserLoginController::class)->middleware('guest')->group(function(){
-    Route::get('/', 'index')->name('home.view');
-    Route::post('/', 'login')->name('login.action');
-});
-
 Route::controller(RegisterController::class)->middleware('guest')->group(function(){
     Route::get('/register', 'index')->name('register.view');
     Route::post('/register', 'register')->name('register.action');
 });
+
 
 Route::controller(VerifyEmailController::class)->prefix('/email')->name('verification.')->group(function(){
     // show notice and send email for verification
@@ -37,12 +34,30 @@ Route::controller(VerifyEmailController::class)->prefix('/email')->name('verific
     Route::post('/verification-notification', 'send')->middleware(['auth','throttle:6,1'])->name('send');
 });
 
+
+Route::controller(LoginController::class)->middleware('guest')->group(function(){
+    // user login routes
+    Route::get('/', 'index')->name('home.view');
+    Route::post('/', 'login')->name('login.action');
+    // admin login routes
+    Route::get('/admin', 'admin')->name('admin.view');
+    Route::post('/admin', 'admin_login')->name('admin.login');
+});
+
+
 Route::controller(UserDashboardController::class)->middleware(['auth', 'verified'])->group(function(){
     // user dashboard
     Route::get('/dashboard', 'index')->name('dashboard');
     // logout
     Route::get('/logout', 'logout')->name('logout')->withoutMiddleware('verified');
 });
+
+
+Route::controller(AdminDashboardController::class)->middleware(['auth'])->group(function(){
+    // admin dashboard
+    Route::get('/admin/dashboard', 'index')->name('admin.dashboard');
+});
+
 
 Route::controller(ResetPasswordController::class)->name('password.')->middleware('guest')->group(function(){
     // send password reset link
