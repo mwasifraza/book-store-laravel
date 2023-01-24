@@ -7,7 +7,7 @@ Home | Book Store
 @section('main')
 <div class="row">
     <div class="col-sm-4">
-        <div class="p-4 mt-3 rounded">
+        <div class="p-4 mt-3 mx-3 rounded bg-light">
             <h4 class="text-uppercase border-start border-5 border-warning ps-3">Log into your account!</h4>
             <hr>
             <form action="{{ route('login.action') }}" method="POST">

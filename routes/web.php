@@ -47,20 +47,20 @@ Route::controller(LoginController::class)->middleware('guest')->group(function()
 });
 
 
-Route::controller(UserDashboardController::class)->middleware(['auth', 'verified'])->group(function(){
+Route::controller(UserDashboardController::class)->middleware(['role.user', 'verified'])->group(function(){
     // user dashboard
     Route::get('/dashboard', 'index')->name('dashboard');
-    //settings
+    // user settings
     Route::get('/settings', 'settings')->name('settings');
     Route::post('/settings/profile', 'update_profile')->name('update.profile');
     Route::post('/settings/account', 'update_account')->name('update.account');
     Route::post('/settings/password', 'update_password')->name('update.password');
     // logout
-    Route::get('/logout', 'logout')->name('logout')->withoutMiddleware('verified');
+    Route::get('/logout', 'logout')->name('logout')->withoutMiddleware(['verified', 'role.user']);
 });
 
 
-Route::controller(AdminDashboardController::class)->middleware(['auth'])->group(function(){
+Route::controller(AdminDashboardController::class)->middleware(['role.admin', 'verified'])->group(function(){
     // admin dashboard
     Route::get('/admin/dashboard', 'index')->name('admin.dashboard');
 });

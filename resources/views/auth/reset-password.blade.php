@@ -7,7 +7,7 @@ Reset your password | Book Store
 @section('main')
 <div class="row">
     <div class="col-sm-4">
-        <div class="p-4 mt-3 rounded">
+        <div class="p-4 mt-3 mx-3 bg-light rounded">
             <h4 class="text-uppercase border-start border-5 border-warning ps-3">Reset Your Password!</h4>
             <p>Enter your email address to recieve password reset code.</p>
             <hr>

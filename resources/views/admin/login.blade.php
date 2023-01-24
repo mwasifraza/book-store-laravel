@@ -6,9 +6,9 @@ Admin Panel | Book Store
 
 @section('main')
 <div class="row">
-    <div class="col-sm-4">
-        <div class="p-4 mt-3 rounded">
-            <h4 class="text-uppercase border-start border-5 border-warning ps-3">Hello Admins!</h4>
+    <div class=" mx-auto col-sm-4">
+        <div class="p-4 mt-5 mx-4 bg-light rounded ">
+            <h4 class="text-uppercase border-start border-5 border-warning ps-3">Welcome to Admin Portal</h4>
             <hr>
             <form action="{{ route('admin.login') }}" method="POST">
                 @csrf
@@ -31,9 +31,9 @@ Admin Panel | Book Store
                     </small>
                 </div>
 
-                {{-- <div class="d-flex justify-content-end mb-4">
+                <div class="d-flex justify-content-end mb-4">
                     <a href="{{ route('password.request') }}" class="text-dark text-decoration-none">Forget Password</a>
-                </div> --}}
+                </div>
 
                 {{-- submit button --}}
                 <div class="d-grid">

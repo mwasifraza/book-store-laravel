@@ -10,8 +10,8 @@
                 <label class="form-label">Email</label>
                 <input type="email" class="form-control" name="email" value="{{ $user->email }}">
                 <small class="form-text text-danger">
-                    @error('email') {{ $message }} @enderror
-                </small><br>
+                    @error('email') {{ $message }} <br> @enderror
+                </small>
                 <small class="form-text text-muted">please enter only valid email address, otherwise you will not be able to recover your account</small>
             </div>
 
@@ -20,8 +20,8 @@
                 <label class="form-label">Username</label>
                 <input type="text" class="form-control" name="username" value="{{ $user->username }}">
                 <small class="form-text text-danger">
-                    @error('username') {{ $message }} @enderror
-                </small><br>
+                    @error('username') {{ $message }} <br> @enderror
+                </small>
                 <small class="form-text text-muted">after changing your username, your old one will become avaliable for anyone to claim</small>
             </div>
 
