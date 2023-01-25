@@ -15,7 +15,7 @@ class LoginController extends Controller
     public function login(LoginRequest $request){
         if (Auth::attempt(['username'=>$request->username, 'password'=>$request->password, 'role' => 'user'])) {
             $request->session()->regenerate();
-            return redirect()->route('dashboard');
+            return redirect()->route('user.dashboard');
         }
         return back()->withErrors([
             'password' => 'Invalid username or password.',

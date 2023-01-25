@@ -38,30 +38,31 @@
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/" aria-current="page">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/view">View</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/user/dashboard">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Notification</a>
-                </li>
                 @if(auth()->check())
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="{{ route('settings', ['role' => auth()->user()->role]) }}">Settings</a>
-                        <a class="dropdown-item" href="#">Help</a>
-                        <a class="dropdown-item" href="{{ route('logout', ['role' => auth()->user()->role]) }}">Logout</a>
-                    </div>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route(auth()->user()->role.'.dashboard') }}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Notification</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="{{ route('settings', ['role' => auth()->user()->role]) }}">Settings</a>
+                            <a class="dropdown-item" href="#">Help</a>
+                            <a class="dropdown-item" href="{{ route('logout', ['role' => auth()->user()->role]) }}">Logout</a>
+                        </div>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/view">View</a>
+                    </li>
                 @endif
             </ul>
             {{-- <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
