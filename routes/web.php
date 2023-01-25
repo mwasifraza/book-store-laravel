@@ -55,6 +55,9 @@ Route::controller(UserDashboardController::class)->middleware(['role.user', 'ver
     Route::post('/settings/profile', 'update_profile')->name('update.profile');
     Route::post('/settings/account', 'update_account')->name('update.account');
     Route::post('/settings/password', 'update_password')->name('update.password');
+    // update avatar
+    Route::get('/upload/avatar', 'upload')->name('upload.avatar');
+    Route::post('/upload/avatar', 'upload_avatar')->name('upload.action');
     // logout
     Route::get('/logout', 'logout')->name('logout')->withoutMiddleware(['verified', 'role.user']);
 });

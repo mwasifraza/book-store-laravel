@@ -13,11 +13,33 @@ use Illuminate\Support\Facades\Hash;
 class UserDashboardController extends Controller
 {
     public function index(){
-        return view('dashboard');
+        return view('dashboard', ['user' => Auth::user()]);
     }
 
     public function settings(){
         return view('settings', ['user' => Auth::user()]);
+    }
+
+    public function upload(){
+        return view('update-avatar');
+    }
+
+    public function upload_avatar(Request $request){
+        $old_avatar = Auth::user()->avatar;
+        $request->validate([
+            'avatar' => 'required|max:2048|mimes:jpg,png,jpeg,gif',
+        ]);
+
+        $filename = time().'.'.$request->file('avatar')->extension();
+        if($path = $request->file('avatar')->storeAs('public/', $filename)){
+            $user = User::find(Auth::id())->update(['avatar' => "storage/{$filename}"]);
+
+            if ($old_avatar !== "storage/user.png") {
+                unlink($old_avatar);
+            }
+
+            return redirect()->route('dashboard', ['msg' => 'uploaded successfully!']);
+        }
     }
 
     public function update_profile(UpdateProfileRequest $request){
