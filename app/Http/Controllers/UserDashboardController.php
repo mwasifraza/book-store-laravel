@@ -42,6 +42,15 @@ class UserDashboardController extends Controller
         }
     }
 
+    public function remove_avatar(){
+        $old_avatar = Auth::user()->avatar;
+        $user = User::find(Auth::id())->update(['avatar' => "storage/user.png"]);
+        if ($old_avatar !== "storage/user.png") {
+            unlink($old_avatar);
+        }
+        return redirect()->route('dashboard', ['msg' => 'profile has been removed']);
+    }
+
     public function update_profile(UpdateProfileRequest $request){
         $request->merge(['phone' => $request->countrycode.$request->phone]);
         User::find(Auth::id())->update($request->all());

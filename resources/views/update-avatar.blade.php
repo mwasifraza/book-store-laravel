@@ -31,6 +31,13 @@ Upload Avatar | Book Store
                 </div>
                 
             </form>
+
+            <form action="{{ route('remove.action') }}" method="POST">
+                @csrf
+                <div class="d-grid">
+                    <button class="btn btn-secondary">Remove Profile</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

@@ -58,6 +58,7 @@ Route::controller(UserDashboardController::class)->middleware(['role.user', 'ver
     // update avatar
     Route::get('/upload/avatar', 'upload')->name('upload.avatar');
     Route::post('/upload/avatar', 'upload_avatar')->name('upload.action');
+    Route::post('/remove/avatar', 'remove_avatar')->name('remove.action');
     // logout
     Route::get('/logout', 'logout')->name('logout')->withoutMiddleware(['verified', 'role.user']);
 });
