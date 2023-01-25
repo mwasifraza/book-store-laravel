@@ -13,7 +13,7 @@ Upload Avatar | Book Store
             <div class="my-3 mx-auto border d-flex justify-content-center align-items-center" style="width: 200px; height: 200px;">
                 <img src="{{ asset(auth()->user()->avatar) }}" alt="User" class="w-100">
             </div>
-            <form action="{{ route('upload.action') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('upload.action', ['role' => auth()->user()->role]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 {{-- avatar --}}
@@ -32,7 +32,7 @@ Upload Avatar | Book Store
                 
             </form>
 
-            <form action="{{ route('remove.action') }}" method="POST">
+            <form action="{{ route('remove.action', ['role' => auth()->user()->role]) }}" method="POST">
                 @csrf
                 <div class="d-grid">
                     <button class="btn btn-secondary">Remove Profile</button>

@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\VerifyEmailController;
@@ -46,10 +48,7 @@ Route::controller(LoginController::class)->middleware('guest')->group(function()
     Route::post('/admin', 'admin_login')->name('admin.login');
 });
 
-
-Route::controller(UserDashboardController::class)->middleware(['role.user', 'verified'])->group(function(){
-    // user dashboard
-    Route::get('/dashboard', 'index')->name('dashboard');
+Route::controller(DashboardController::class)->prefix('{role}')->middleware(['auth', 'role.param', 'verified'])->group(function(){
     // user settings
     Route::get('/settings', 'settings')->name('settings');
     Route::post('/settings/profile', 'update_profile')->name('update.profile');
@@ -60,7 +59,13 @@ Route::controller(UserDashboardController::class)->middleware(['role.user', 'ver
     Route::post('/upload/avatar', 'upload_avatar')->name('upload.action');
     Route::post('/remove/avatar', 'remove_avatar')->name('remove.action');
     // logout
-    Route::get('/logout', 'logout')->name('logout')->withoutMiddleware(['verified', 'role.user']);
+    Route::get('/logout', 'logout')->name('logout')->withoutMiddleware(['verified']);
+});
+
+
+Route::controller(UserDashboardController::class)->middleware(['role.user', 'verified'])->group(function(){
+    // user dashboard
+    Route::get('/user/dashboard', 'index')->name('dashboard');
 });
 
 

@@ -1,6 +1,6 @@
 <h4 class="text-uppercase border-start border-5 border-warning ps-3">Account settings</h4>
 <hr>
-<form action="{{ route('update.account') }}" method="post" class="my-3">
+<form action="{{ route('update.account', ['role' => auth()->user()->role]) }}" method="post" class="my-3">
     @csrf
     
     <div class="row">

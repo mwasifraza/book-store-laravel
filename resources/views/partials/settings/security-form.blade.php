@@ -1,6 +1,6 @@
 <h4 class="text-uppercase border-start border-5 border-warning ps-3">Security settings</h4>
 <hr>
-<form action="{{ route('update.password') }}" method="post" class="my-3">
+<form action="{{ route('update.password', ['role' => auth()->user()->role]) }}" method="post" class="my-3">
     @csrf
     
     <div class="row">
