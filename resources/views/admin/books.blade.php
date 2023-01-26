@@ -53,7 +53,7 @@ Available Books | Book Store
                                         <td scope="row">{{ $book->price }}</td>
                                         <td>
                                             <a href="{{ route('admin.book.update.page', ['id' => $book->id]) }}" class="btn btn-sm btn-secondary">Update</a>
-                                            <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                            <a href="{{ route('admin.book.remove.action', ['id' => $book->id]) }}" class="btn btn-sm btn-danger">Delete</a>
                                         </td>
                                     </tr>                                
                                 @endforeach

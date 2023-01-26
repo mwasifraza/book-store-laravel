@@ -77,6 +77,7 @@ Route::controller(AdminDashboardController::class)->prefix('admin')->middleware(
     Route::post('/dashboard/books/add', 'add_book_action')->name('admin.book.add.action');
     Route::get('/dashboard/books/update/{id}', 'update_book')->name('admin.book.update.page');
     Route::post('/dashboard/books/update/{id}', 'update_book_action')->name('admin.book.update.action');
+    Route::get('/dashboard/books/remove/{id}', 'remove_book_action')->name('admin.book.remove.action');
 
     Route::get('/dashboard/categories', 'all_categories')->name('admin.categories.page');
     Route::get('/dashboard/categories/add', 'add_category')->name('admin.category.add.page');

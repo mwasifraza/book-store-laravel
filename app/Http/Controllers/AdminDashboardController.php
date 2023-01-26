@@ -36,10 +36,6 @@ class AdminDashboardController extends Controller
             $request->merge(['cover_photo' => "storage/{$bookname}"]);
             $book = Book::create($request->except('cover'));
 
-            // if ($old_avatar !== "storage/user.png") {
-            //     unlink($old_avatar);
-            // }
-
             return redirect()->route('admin.books.page', ['msg' => 'new book added']);
         }
     }
@@ -64,6 +60,13 @@ class AdminDashboardController extends Controller
         }
         Book::find($id)->update($request->except('cover'));
         return redirect()->route('admin.books.page', ['msg' => 'book has been updated']);
+    }
+
+    public function remove_book_action($id){
+        $book = Book::find($id);
+        unlink($book->cover_photo);
+        $book->delete();
+        return redirect()->route('admin.books.page', ['msg' => 'book deleted']);
     }
 
 
