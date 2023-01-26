@@ -21,13 +21,13 @@ class DashboardController extends Controller
     public function update_profile(UpdateProfileRequest $request){
         $request->merge(['phone' => $request->countrycode.$request->phone]);
         User::find(Auth::id())->update($request->all());
-        return redirect()->route('dashboard', ['msg' => 'profile updated']);
+        return redirect()->route(Auth::user()->role.'.dashboard', ['msg' => 'profile updated']);
     }
 
 
     public function update_account(UpdateAccountRequest $request){
         User::find(Auth::id())->update($request->all());
-        return redirect()->route('dashboard', ['msg' => 'account updated']);
+        return redirect()->route(Auth::user()->role.'.dashboard', ['msg' => 'account updated']);
     }
 
 
@@ -38,7 +38,7 @@ class DashboardController extends Controller
              'password' => Hash::make($request->new_password)
             ])->save();
          
-            return redirect()->route('dashboard', ['msg' => 'password updated']);
+            return redirect()->route(Auth::user()->role.'.dashboard', ['msg' => 'password updated']);
         }else{
             return redirect()->back()->withErrors(['current_password' => 'Password does not match.']);
         }
@@ -65,7 +65,7 @@ class DashboardController extends Controller
                 unlink($old_avatar);
             }
 
-            return redirect()->route('dashboard', ['msg' => 'uploaded successfully!']);
+            return redirect()->route(Auth::user()->role.'.dashboard', ['msg' => 'uploaded successfully!']);
         }
     }
 
@@ -76,7 +76,7 @@ class DashboardController extends Controller
         if ($old_avatar !== "storage/user.png") {
             unlink($old_avatar);
         }
-        return redirect()->route('dashboard', ['msg' => 'profile has been removed']);
+        return redirect()->route(Auth::user()->role.'.dashboard', ['msg' => 'profile has been removed']);
     }
 
 

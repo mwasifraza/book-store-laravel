@@ -76,6 +76,23 @@
 
 
 {{-- main container --}}
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/dashboard/books">Books</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/dashboard/categories">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/dashboard/users">Users</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <div class="container py-4">
     @yield('main')
 </div>

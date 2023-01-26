@@ -72,6 +72,9 @@ Route::controller(UserDashboardController::class)->prefix('user')->middleware(['
 Route::controller(AdminDashboardController::class)->prefix('admin')->middleware(['role.admin', 'verified'])->group(function(){
     // admin dashboard
     Route::get('/dashboard', 'index')->name('admin.dashboard');
+    Route::get('/dashboard/books', 'books')->name('admin.books.page');
+    Route::get('/dashboard/categories', 'categories')->name('admin.categories.page');
+    Route::get('/dashboard/users', 'users')->name('admin.users.page');
 });
 
 
