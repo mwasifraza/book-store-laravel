@@ -38,17 +38,26 @@ Available Categories | Book Store
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($categories as $category)
+                            @if (isset($categories[0]))
+                                @foreach ($categories as $category)
+                                    <tr class="text-center">
+                                        <td scope="row">{{ $category->id }}</td>
+                                        <td scope="row">{{ $category->category_name }}</td>
+                                        <td scope="row">0</td>
+                                        <td>
+                                            <a href="{{ route('admin.category.update.page', ['id' => $category->id]) }}" class="btn btn-sm btn-secondary">Update</a>
+                                            <a href="{{ route('admin.category.remove.action', ['id' => $category->id]) }}" class="btn btn-sm btn-danger">Remove</a>
+                                        </td>
+                                    </tr>                                
+                                @endforeach
+                            @else
                                 <tr class="text-center">
-                                    <td scope="row">{{ $category->id }}</td>
-                                    <td scope="row">{{ $category->category_name }}</td>
-                                    <td scope="row">0</td>
-                                    <td>
-                                        <a href="#" class="btn btn-sm btn-secondary">Update</a>
-                                        <a href="#" class="btn btn-sm btn-danger">Remove</a>
-                                    </td>
-                                </tr>                                
-                            @endforeach
+                                    <td class="text-muted" colspan="4">
+                                        <h2>No Categories to show!</h2>
+                                    </td>                                    
+                                </tr>     
+                            @endif
+
                         </tbody>
                     </table>
                 </div>

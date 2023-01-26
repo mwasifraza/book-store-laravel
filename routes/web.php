@@ -75,8 +75,11 @@ Route::controller(AdminDashboardController::class)->prefix('admin')->middleware(
     Route::get('/dashboard/books', 'books')->name('admin.books.page');
 
     Route::get('/dashboard/categories', 'all_categories')->name('admin.categories.page');
-    Route::get('/dashboard/categories/add', 'category')->name('admin.category.add.page');
-    Route::post('/dashboard/categories/add', 'add_category')->name('admin.category.add.action');
+    Route::get('/dashboard/categories/add', 'add_category')->name('admin.category.add.page');
+    Route::post('/dashboard/categories/add', 'add_category_action')->name('admin.category.add.action');
+    Route::get('/dashboard/categories/update/{id}', 'update_category')->name('admin.category.update.page');
+    Route::post('/dashboard/categories/update/{id}', 'update_category_action')->name('admin.category.update.action');
+    Route::get('/dashboard/categories/remove/{id}', 'remove_category_action')->name('admin.category.remove.action');
 
     Route::get('/dashboard/users', 'users')->name('admin.users.page');
 });

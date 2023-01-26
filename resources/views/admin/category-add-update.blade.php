@@ -1,7 +1,7 @@
 @extends('partials.template')
 
 @push('title')
-Available Categories | Book Store 
+{{ $title }} | Book Store 
 @endpush
 
 @section('main')
@@ -22,14 +22,15 @@ Available Categories | Book Store
     <div class="mx-auto col-sm-6 p-3">
         <div class="card">
             <div class="card-body">
-                <h4 class="text-uppercase border-start border-5 border-warning ps-3">Add a new category</h4>
+                <h4 class="text-uppercase border-start border-5 border-warning ps-3">{{ $title }}</h4>
                 <hr>
-                <form action="{{ route('admin.category.add.action') }}" method="POST" class="px-5 py-3">
+                <form action="{{ $action }}" method="POST" class="px-5 py-3">
                     @csrf
                     {{-- category --}}
                     <div class="mb-3">
                         <label for="" class="form-label">Category Name</label>
-                        <input type="text" class="form-control" name="category_name" value="{{ old('category_name') }}">
+                        <input type="text" class="form-control" name="category_name" 
+                               value="{{ $category->category_name ?? old('category_name') }}">
                         <small class="form-text text-danger">
                             @error('category_name') {{ $message }} @enderror
                         </small>
@@ -37,7 +38,7 @@ Available Categories | Book Store
 
                     {{-- submit button --}}
                     <div class="d-grid">
-                        <button class="btn btn-warning">Add Category</button>
+                        <button class="btn btn-warning">{{ $btn }}</button>
                     </div>
                 </form>  
             </div>
