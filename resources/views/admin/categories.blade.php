@@ -9,12 +9,12 @@ Available Categories | Book Store
     <div class="col-sm-10 mx-auto">
         <div class="d-flex flex-direction-row">
             <div class="border d-flex justify-content-center align-items-center rounded-circle" style="width: 75px; height: 75px;">
-                <img src="{{ asset($user->avatar) }}" alt="User" class="w-100">
+                <img src="{{ asset(auth()->user()->avatar) }}" alt="User" class="w-100">
             </div>
             <div class="ms-3 d-flex align-items-center">
                 <div>
-                    <h4 class="m-0">{{ $user->firstname." ".$user->lastname }}</h4>
-                    <h6 class="text-muted m-0">{{ '@'.$user->username }}</h6>
+                    <h4 class="m-0">{{ auth()->user()->firstname." ".auth()->user()->lastname }}</h4>
+                    <h6 class="text-muted m-0">{{ '@'.auth()->user()->username }}</h6>
                 </div>
             </div>
         </div>
@@ -25,23 +25,30 @@ Available Categories | Book Store
                 <h4 class="text-uppercase border-start border-5 border-warning ps-3">Categories</h4>
                 <hr>
                 <div class="d-flex justify-content-end">
-                    <a href="#" class="btn btn-warning mb-3 px-5">Add Category</a>
+                    <a href="{{ route('admin.category.add.page') }}" class="btn btn-warning mb-3 px-5">Add Category</a>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-primary">
-                        <thead>
-                            <tr>
-                                <th scope="col">Column 1</th>
-                                <th scope="col">Column 2</th>
-                                <th scope="col">Column 3</th>
+                    <table class="table">
+                        <thead class="table-dark">
+                            <tr class="text-center">
+                                <th scope="col">ID</th>
+                                <th scope="col">Category Name</th>
+                                <th scope="col">No. of Books</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="">
-                                <td scope="row">R1C1</td>
-                                <td>R1C2</td>
-                                <td>R1C3</td>
-                            </tr>
+                            @foreach ($categories as $category)
+                                <tr class="text-center">
+                                    <td scope="row">{{ $category->id }}</td>
+                                    <td scope="row">{{ $category->category_name }}</td>
+                                    <td scope="row">0</td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-secondary">Update</a>
+                                        <a href="#" class="btn btn-sm btn-danger">Remove</a>
+                                    </td>
+                                </tr>                                
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

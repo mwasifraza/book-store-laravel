@@ -81,13 +81,13 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/dashboard/books">Books</a>
+                    <a class="nav-link" href="{{ route('admin.books.page') }}">Books</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/dashboard/categories">Categories</a>
+                    <a class="nav-link" href="{{ route('admin.categories.page') }}">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/dashboard/users">Users</a>
+                    <a class="nav-link" href="{{ route('admin.users.page') }}">Users</a>
                 </li>
             </ul>
         </div>
