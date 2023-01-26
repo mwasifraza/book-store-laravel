@@ -29,7 +29,7 @@
                     {{-- title --}}
                     <div class="mb-3">
                         <label for="" class="form-label">Title</label>
-                        <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                        <input type="text" class="form-control" name="title" value="{{ $book->title ?? old('title') }}">
                         <small class="form-text text-danger">
                             @error('title') {{ $message }} @enderror
                         </small>
@@ -38,7 +38,7 @@
                     {{-- description --}}
                     <div class="mb-3">
                         <label for="" class="form-label">Description</label>
-                        <textarea type="text" class="form-control" name="description" value="{{ old('description') }}"></textarea>
+                        <textarea type="text" class="form-control" name="description">{{ $book->description ?? old('description') }}</textarea>
                         <small class="form-text text-danger">
                             @error('description') {{ $message }} @enderror
                         </small>
@@ -50,7 +50,13 @@
                         <select name="category" class="form-select">
                             <option value="">-- Category --</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                <option value="{{ $category->id }}" 
+                                    @if (isset($book))
+                                        {{ $book->category === $category->id ? "selected" : "" }}
+                                    @endif>
+
+                                    {{ $category->category_name }}
+                                </option>
                             @endforeach
                         </select>
                         <small class="form-text text-danger">
@@ -61,7 +67,7 @@
                     {{-- author --}}
                     <div class="mb-3">
                         <label for="" class="form-label">Author</label>
-                        <input type="text" class="form-control" name="author" value="{{ old('author') }}">
+                        <input type="text" class="form-control" name="author" value="{{ $book->author ?? old('author') }}">
                         <small class="form-text text-danger">
                             @error('author') {{ $message }} @enderror
                         </small>
@@ -70,11 +76,18 @@
                     {{-- price --}}
                     <div class="mb-3">
                         <label for="" class="form-label">Price</label>
-                        <input type="number" class="form-control" name="price" value="{{ old('price') }}">
+                        <input type="number" class="form-control" name="price" value="{{ $book->price ?? old('price') }}">
                         <small class="form-text text-danger">
                             @error('price') {{ $message }} @enderror
                         </small>
                     </div>
+                    
+                    @if (isset($book->cover_photo))
+                        <div class="text-center">
+                            <img src="{{ asset($book->cover_photo) }}" alt="book cover" class="img-thumbnail" width="200">
+                            <input type="hidden" name="cover_photo" value="{{ $book->cover_photo }}">
+                        </div>             
+                    @endif
 
                    {{-- cover --}}
                    <div class="mb-3">

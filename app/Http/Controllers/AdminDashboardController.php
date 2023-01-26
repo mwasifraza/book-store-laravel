@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddBookRequest;
+use App\Http\Requests\UpdateBookRequest;
 use App\Models\Category;
 use App\Models\Book;
 
@@ -43,6 +44,28 @@ class AdminDashboardController extends Controller
         }
     }
 
+    public function update_book($id){
+        return view('admin.book-add-update', [
+            'title' => 'Update Book',
+            'btn' => 'Update Book',
+            'action' => route('admin.book.update.action', ['id' => $id]),
+            'categories' => Category::all(),
+            'book' => Book::findOrFail($id),
+        ]);
+    }
+
+    public function update_book_action(UpdateBookRequest $request, $id){
+        if(!empty($request->cover)){
+            $bookname = "book".date("YmdHis").'.'.$request->file('cover')->extension();
+            if($path = $request->file('cover')->storeAs('public/', $bookname)){
+                unlink($request->cover_photo);
+                $request->merge(['cover_photo' => "storage/{$bookname}"]);
+            }
+        }
+        Book::find($id)->update($request->except('cover'));
+        return redirect()->route('admin.books.page', ['msg' => 'book has been updated']);
+    }
+
 
     // category
     public function all_categories(){
@@ -71,7 +94,7 @@ class AdminDashboardController extends Controller
             'title' => 'Update Category',
             'btn' => 'Update Category',
             'action' => route('admin.category.update.action', ['id' => $id]),
-            'category' => Category::find($id)
+            'category' => Category::findOrFail($id)
         ]);
     }
 
