@@ -21,6 +21,8 @@ Admin Dashboard | Book Store
     <div class="col-sm-8 p-3">
         <div class="card">
             <div class="card-body">
+                <h3 class="text-uppercase border-start border-5 border-warning ps-3">overview</h3>
+                <hr>
             </div>
         </div>
     </div>

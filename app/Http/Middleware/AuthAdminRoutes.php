@@ -24,7 +24,7 @@ class AuthAdminRoutes
             return $next($request);
         }
         if(Auth::user()->role === "user"){
-            return redirect()->route('dashboard');
+            return redirect()->route('user.dashboard');
         }  
     }
 }

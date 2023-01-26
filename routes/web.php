@@ -63,13 +63,13 @@ Route::controller(DashboardController::class)->prefix('{role}')->middleware(['au
 });
 
 
-Route::controller(UserDashboardController::class)->prefix('user')->middleware(['role.user', 'verified'])->group(function(){
+Route::controller(UserDashboardController::class)->prefix('user')->middleware(['auth.user', 'verified'])->group(function(){
     // user dashboard
     Route::get('/dashboard', 'index')->name('user.dashboard');
 });
 
 
-Route::controller(AdminDashboardController::class)->prefix('admin')->middleware(['role.admin', 'verified'])->group(function(){
+Route::controller(AdminDashboardController::class)->prefix('admin')->middleware(['auth.admin', 'verified'])->group(function(){
     // admin dashboard
     Route::get('/dashboard', 'index')->name('admin.dashboard');
     Route::get('/dashboard/books', 'books')->name('admin.books.page');

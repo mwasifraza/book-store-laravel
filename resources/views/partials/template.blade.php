@@ -29,6 +29,7 @@
 </head>
 <body>
 
+    
 {{-- header/navbar --}}
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container">
@@ -75,27 +76,32 @@
 </nav>
 
 
+
 {{-- main container --}}
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.books.page') }}">Books</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.categories.page') }}">Categories</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.users.page') }}">Users</a>
-                </li>
-            </ul>
+@if (auth()->check() && auth()->user()->role === "admin")
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.books.page') }}">Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.categories.page') }}">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.users.page') }}">Users</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+@endif
+
 <div class="container py-4">
     @yield('main')
 </div>
+
 
 
 <!-- Bootstrap JavaScript Libraries -->
