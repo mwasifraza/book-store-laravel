@@ -8,7 +8,7 @@ Admin Dashboard | Book Store
 
 <div class="row">
     <div class="col-sm-4 p-3">
-        <div class="border d-flex justify-content-center align-items-center rounded-circle" style="width: 200px; height: 200px;">
+        <div class="border d-flex justify-content-center align-items-center rounded-circle overflow-hidden" style="width: 200px; height: 200px;">
             <a href="{{ route('upload.avatar', ['role' => auth()->user()->role]) }}">
                 <img src="{{ asset($user->avatar) }}" alt="User" class="w-100">
             </a>

@@ -8,7 +8,7 @@ Available Books | Book Store
 <div class="row">
     <div class="col-sm-10 mx-auto">
         <div class="d-flex flex-direction-row">
-            <div class="border d-flex justify-content-center align-items-center rounded-circle" style="width: 75px; height: 75px;">
+            <div class="border d-flex justify-content-center align-items-center rounded-circle overflow-hidden" style="width: 75px; height: 75px;">
                 <img src="{{ asset(auth()->user()->avatar) }}" alt="User" class="w-100">
             </div>
             <div class="ms-3 d-flex align-items-center">
