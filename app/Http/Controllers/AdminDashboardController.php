@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\AddBookRequest;
 use App\Models\Category;
+use App\Models\Book;
 
 class AdminDashboardController extends Controller
 {
@@ -14,8 +16,31 @@ class AdminDashboardController extends Controller
 
 
     // books
-    public function books(){
-        return view('admin.books', ['user' => Auth::user()]);
+    public function all_books(){
+        return view('admin.books', ['books' => Book::all()]);
+    }
+
+    public function add_book(){
+        return view('admin.book-add-update', [
+            'title' => 'Add a New Book',
+            'btn' => 'Add Book',
+            'action' => route('admin.book.add.action'),
+            'categories' => Category::all()
+        ]);
+    }
+
+    public function add_book_action(AddBookRequest $request){
+        $bookname = "book".date("YmdHis").'.'.$request->file('cover')->extension();
+        if($path = $request->file('cover')->storeAs('public/', $bookname)){
+            $request->merge(['cover_photo' => "storage/{$bookname}"]);
+            $book = Book::create($request->except('cover'));
+
+            // if ($old_avatar !== "storage/user.png") {
+            //     unlink($old_avatar);
+            // }
+
+            return redirect()->route('admin.books.page', ['msg' => 'new book added']);
+        }
     }
 
 

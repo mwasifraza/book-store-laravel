@@ -72,7 +72,9 @@ Route::controller(UserDashboardController::class)->prefix('user')->middleware(['
 Route::controller(AdminDashboardController::class)->prefix('admin')->middleware(['auth.admin', 'verified'])->group(function(){
     // admin dashboard
     Route::get('/dashboard', 'index')->name('admin.dashboard');
-    Route::get('/dashboard/books', 'books')->name('admin.books.page');
+    Route::get('/dashboard/books', 'all_books')->name('admin.books.page');
+    Route::get('/dashboard/books/add', 'add_book')->name('admin.book.add.page');
+    Route::post('/dashboard/books/add', 'add_book_action')->name('admin.book.add.action');
 
     Route::get('/dashboard/categories', 'all_categories')->name('admin.categories.page');
     Route::get('/dashboard/categories/add', 'add_category')->name('admin.category.add.page');

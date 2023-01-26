@@ -9,12 +9,12 @@ Available Books | Book Store
     <div class="col-sm-10 mx-auto">
         <div class="d-flex flex-direction-row">
             <div class="border d-flex justify-content-center align-items-center rounded-circle" style="width: 75px; height: 75px;">
-                <img src="{{ asset($user->avatar) }}" alt="User" class="w-100">
+                <img src="{{ asset(auth()->user()->avatar) }}" alt="User" class="w-100">
             </div>
             <div class="ms-3 d-flex align-items-center">
                 <div>
-                    <h4 class="m-0">{{ $user->firstname." ".$user->lastname }}</h4>
-                    <h6 class="text-muted m-0">{{ '@'.$user->username }}</h6>
+                    <h4 class="m-0">{{ auth()->user()->firstname." ".auth()->user()->lastname }}</h4>
+                    <h6 class="text-muted m-0">{{ '@'.auth()->user()->username }}</h6>
                 </div>
             </div>
         </div>
@@ -25,23 +25,46 @@ Available Books | Book Store
                 <h4 class="text-uppercase border-start border-5 border-warning ps-3">Books</h4>
                 <hr>
                 <div class="d-flex justify-content-end">
-                    <a href="#" class="btn btn-warning mb-3 px-5">Add Books</a>
+                    <a href="{{ route('admin.book.add.page') }}" class="btn btn-warning mb-3 px-5">Add Books</a>
                 </div>
+                
                 <div class="table-responsive">
-                    <table class="table table-primary">
-                        <thead>
-                            <tr>
-                                <th scope="col">Column 1</th>
-                                <th scope="col">Column 2</th>
-                                <th scope="col">Column 3</th>
+                    <table class="table">
+                        <thead class="table-dark">
+                            <tr class="text-center">
+                                <th scope="col">ID</th>
+                                <th scope="col">Title</th>
+                                {{-- <th scope="col">Description</th> --}}
+                                <th scope="col">Category</th>
+                                <th scope="col">Author</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="">
-                                <td scope="row">R1C1</td>
-                                <td>R1C2</td>
-                                <td>R1C3</td>
-                            </tr>
+                            @if (isset($books[0]))
+                                @foreach ($books as $book)
+                                    <tr class="text-center">
+                                        <td scope="row">{{ $book->id }}</td>
+                                        <td scope="row">{{ $book->title }}</td>
+                                        {{-- <td scope="row">{{ $book->description }}</td> --}}
+                                        <td scope="row">{{ $book->category }}</td>
+                                        <td scope="row">{{ $book->author }}</td>
+                                        <td scope="row">{{ $book->price }}</td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-secondary">Update</a>
+                                            <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                        </td>
+                                    </tr>                                
+                                @endforeach
+                            @else
+                                <tr class="text-center">
+                                    <td class="text-muted" colspan="7">
+                                        <h2>No Books to show!</h2>
+                                    </td>                                    
+                                </tr>     
+                            @endif
+
                         </tbody>
                     </table>
                 </div>

@@ -57,7 +57,7 @@ class DashboardController extends Controller
             'avatar' => 'required|max:2048|mimes:jpg,png,jpeg,gif',
         ]);
 
-        $filename = time().'.'.$request->file('avatar')->extension();
+        $filename = date("YmdHisu").'.'.$request->file('avatar')->extension();
         if($path = $request->file('avatar')->storeAs('public/', $filename)){
             $user = User::find(Auth::id())->update(['avatar' => "storage/{$filename}"]);
 
