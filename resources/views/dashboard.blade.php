@@ -40,18 +40,20 @@ User Dashboard | Book Store
 
         @if (isset($books[0]))
             @foreach ($books as $book)
+                @include('partials.modals.book-modal')
                 <div class="card mb-3">
                     <div class="card-body bg-light d-flex">
                         <div class="bg-white d-flex justify-content-center align-items-center w-25" style="height:200px;">
                             <img src="{{ asset($book->cover_photo) }}" alt="book cover" class="h-100">
-                            {{-- <button>abc</button> --}}
                         </div>
                         <div class="ms-3 w-75">
                             <h4 class="m-0">{{ $book->title }}</h4>
                             <div class="h6">
                                 <span class="me-2">
                                     <i class="fa-solid fa-tag text-muted"></i>&nbsp; 
-                                    <a href="" class="text-decoration-none text-muted fw-normal">{{ $book->category_info->category_name }}</a>
+                                    <a href="" class="text-decoration-none text-muted fw-normal">
+                                        {{ $book->category_info->category_name }}
+                                    </a>
                                 </span>
                                 <span class="me-2">
                                     <i class="fa-solid fa-user text-muted"></i>&nbsp;
@@ -63,13 +65,15 @@ User Dashboard | Book Store
                                 </span>
                             </div>
                             <div class="mt-3">
-                                <p>{{ substr($book->description, 0 , 200)."..." }}</p>
+                                <p>{{ substr($book->description, 0 , 180)."..." }}</p>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5 class="text-muted">Rs. {{ $book->price }}</h5>
                                 <div>
                                     <button class="btn btn-secondary btn-sm px-4">Buy Now</button>
-                                    <button class="btn btn-secondary btn-sm px-4 ms-2">Read More</button>
+                                    <button class="btn btn-secondary btn-sm px-4 ms-2" type="button" data-bs-toggle="modal" data-bs-target="#book-modal-{{$book->id}}">
+                                        Read More
+                                    </button>
                                 </div>
                             </div>
                         </div>
