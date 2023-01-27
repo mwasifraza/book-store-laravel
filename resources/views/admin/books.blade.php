@@ -68,7 +68,9 @@ Available Books | Book Store
                         </tbody>
                     </table>
                 </div>
-                
+                <div class="d-flex justify-content-center">
+                    {{ $books->onEachSide('1')->links('vendor.pagination.simple-bootstrap-4') }}
+                </div>                
             </div>
         </div>
     </div>

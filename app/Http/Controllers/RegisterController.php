@@ -21,6 +21,6 @@ class RegisterController extends Controller
         $user = User::create($request->all());
         Auth::login($user);
         // event(new Registered($user));
-        return redirect()->route('dashboard', ['msg' => 'inserted successfully']);
+        return redirect()->route('user.dashboard', ['msg' => 'inserted successfully']);
     }
 }

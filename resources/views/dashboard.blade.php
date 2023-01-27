@@ -24,11 +24,13 @@ User Dashboard | Book Store
                     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                         <ul class="navbar-nav">
                             @foreach ($categories as $category)
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('user.dashboard', ['cat' => $category->id]) }}">
-                                        {{ $category->category_name }}
-                                    </a>
-                                </li>                            
+                                @if (count($category->books) > 0)
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('user.dashboard', ['cat' => $category->id]) }}">
+                                            {{ $category->category_name }}
+                                        </a>
+                                    </li>      
+                                @endif                                                      
                             @endforeach
                         </ul>
                     </div>
@@ -40,8 +42,9 @@ User Dashboard | Book Store
             @foreach ($books as $book)
                 <div class="card mb-3">
                     <div class="card-body bg-light d-flex">
-                        <div class="bg-white d-flex justify-content-center align-items-center" style="width: 180px; height:180px;">
-                            <img src="{{ asset($book->cover_photo) }}" alt="book cover" class="w-100">
+                        <div class="bg-white d-flex justify-content-center align-items-center w-25" style="height:200px;">
+                            <img src="{{ asset($book->cover_photo) }}" alt="book cover" class="h-100">
+                            {{-- <button>abc</button> --}}
                         </div>
                         <div class="ms-3 w-75">
                             <h4 class="m-0">{{ $book->title }}</h4>

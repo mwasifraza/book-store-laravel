@@ -56,12 +56,13 @@ Available Categories | Book Store
                                         <h2>No Categories to show!</h2>
                                     </td>                                    
                                 </tr>     
-                            @endif
-
+                            @endif                            
                         </tbody>
                     </table>
                 </div>
-                
+                <div class="d-flex justify-content-center">
+                    {{ $categories->onEachSide('1')->links('vendor.pagination.simple-bootstrap-4') }}
+                </div>                
             </div>
         </div>
     </div>

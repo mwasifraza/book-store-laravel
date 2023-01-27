@@ -39,7 +39,7 @@ Registered Users | Book Store
                                 <th scope="col">Username</th>
                                 <th scope="col">Role</th>
                                 <th scope="col">Gender</th>
-                                <th scope="col">Action</th>
+                                {{-- <th scope="col">Action</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -54,7 +54,7 @@ Registered Users | Book Store
                                         <td scope="row">{{ $user->username }}</td>
                                         <td scope="row">{{ $user->role }}</td>
                                         <td scope="row">{{ $user->gender }}</td>
-                                        <td scope="row"></td>
+                                        {{-- <td scope="row"></td> --}}
                                     </tr> 
                                 @endforeach
                             @else
@@ -68,7 +68,9 @@ Registered Users | Book Store
                         </tbody>
                     </table>
                 </div>
-                
+                <div class="d-flex justify-content-center">
+                    {{ $users->onEachSide('1')->links('vendor.pagination.simple-bootstrap-4') }}
+                </div>                
             </div>
         </div>
     </div>

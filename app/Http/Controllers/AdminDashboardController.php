@@ -24,7 +24,7 @@ class AdminDashboardController extends Controller
 
     // books
     public function all_books(){
-        return view('admin.books', ['books' => Book::all()]);
+        return view('admin.books', ['books' => Book::paginate(7)]);
     }
 
     public function add_book(){
@@ -78,7 +78,7 @@ class AdminDashboardController extends Controller
 
     // category
     public function all_categories(){
-        return view('admin.categories', ['categories' => Category::all()]);
+        return view('admin.categories', ['categories' => Category::paginate(7)]);
     }
 
     public function add_category(){
@@ -117,13 +117,19 @@ class AdminDashboardController extends Controller
     }
 
     public function remove_category_action($id){
-        $category = Category::find($id)->delete();
-        return redirect()->route('admin.categories.page', ['msg' => 'category deleted']);
+        $category = Category::find($id);
+        if(count($category->books) > 0){
+            return redirect()->route('admin.categories.page', ['msg' => 'category cannot be deleted']);
+        }else{
+            $category->delete();
+            return redirect()->route('admin.categories.page', ['msg' => 'category deleted']);
+        }
+        
     }
 
 
     // users
     public function users(){
-        return view('admin.users', ['users' => User::all()]);
+        return view('admin.users', ['users' => User::paginate(7)]);
     }
 }
