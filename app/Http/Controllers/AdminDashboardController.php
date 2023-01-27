@@ -8,6 +8,7 @@ use App\Http\Requests\AddBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Models\Category;
 use App\Models\Book;
+use App\Models\User;
 
 class AdminDashboardController extends Controller
 {
@@ -118,6 +119,6 @@ class AdminDashboardController extends Controller
 
     // users
     public function users(){
-        return view('admin.users', ['user' => Auth::user()]);
+        return view('admin.users', ['users' => User::all()]);
     }
 }

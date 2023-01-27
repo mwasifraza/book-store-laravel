@@ -48,7 +48,7 @@ Available Books | Book Store
                                         <td scope="row">{{ $book->id }}</td>
                                         <td scope="row">{{ $book->title }}</td>
                                         {{-- <td scope="row">{{ $book->description }}</td> --}}
-                                        <td scope="row">{{ $book->category }}</td>
+                                        <td scope="row">{{ $book->category_info->category_name }}</td>
                                         <td scope="row">{{ $book->author }}</td>
                                         <td scope="row">{{ $book->price }}</td>
                                         <td>
