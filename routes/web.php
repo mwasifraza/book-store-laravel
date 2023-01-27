@@ -24,8 +24,6 @@ use App\Http\Controllers\ResetPasswordController;
 Route::controller(RegisterController::class)->middleware('guest')->group(function(){
     Route::get('/register', 'index')->name('register.view');
     Route::post('/register', 'register')->name('register.action');
-
-    Route::get('/view', 'view')->name('view');
 });
 
 

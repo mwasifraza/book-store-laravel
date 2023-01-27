@@ -13,7 +13,12 @@ use App\Models\User;
 class AdminDashboardController extends Controller
 {
     public function index(){
-        return view('admin.dashboard', ['user' => Auth::user()]);
+        return view('admin.dashboard', [
+            'total_user' => count(User::all()),
+            'verified_user' => count(User::where('email_verified_at', '!=', Null)->get()),
+            'total_book' => count(Book::all()),
+            'total_category' => count(Category::all()),
+        ]);
     }
 
 

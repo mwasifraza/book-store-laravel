@@ -47,7 +47,7 @@
                         <a class="nav-link" href="#">Notification</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User</a>
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->firstname." ".auth()->user()->lastname }}</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownId">
                             <a class="dropdown-item" href="{{ route('settings', ['role' => auth()->user()->role]) }}">Settings</a>
                             <a class="dropdown-item" href="#">Help</a>
@@ -56,13 +56,10 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
+                        <a class="nav-link" href="{{ route('home.view') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/register">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/view">View</a>
+                        <a class="nav-link" href="{{ route('register.view') }}">Register</a>
                     </li>
                 @endif
             </ul>
@@ -84,13 +81,13 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.books.page') }}">Books</a>
+                        <a class="btn btn-sm bg-warning rounded px-4 mx-2" href="{{ route('admin.books.page') }}">Books</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.categories.page') }}">Categories</a>
+                        <a class="btn btn-sm bg-warning rounded px-4 mx-2" href="{{ route('admin.categories.page') }}">Categories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.users.page') }}">Users</a>
+                        <a class="btn btn-sm bg-warning rounded px-4 mx-2" href="{{ route('admin.users.page') }}">Users</a>
                     </li>
                 </ul>
             </div>
