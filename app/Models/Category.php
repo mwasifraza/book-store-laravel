@@ -16,8 +16,8 @@ class Category extends Model
         'category_name',
     ];
 
-    public function book()
+    public function books()
     {
-        return $this->hasOne(Book::class, 'category');
+        return $this->hasMany(Book::class, 'category');
     }
 }
