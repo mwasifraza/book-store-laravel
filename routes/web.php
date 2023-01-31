@@ -8,6 +8,7 @@ use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\VerifyEmailController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\ResetPasswordTokenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,11 +88,23 @@ Route::controller(AdminDashboardController::class)->prefix('admin')->middleware(
 });
 
 
-Route::controller(ResetPasswordController::class)->name('password.')->middleware('guest')->group(function(){
+Route::controller(ResetPasswordTokenController::class)->name('password.')->middleware('guest')->group(function(){
     // send password reset link
     Route::get('/forgot-password', 'request')->name('request');
     Route::post('/forgot-password', 'email')->name('email');
+    // code verify
+    Route::get('/forgot-password/recover', 'verify')->name('verify');
+    Route::post('/forgot-password/recover', 'verify_code')->name('verify.code');
     // reset password
     Route::get('/reset-password/{token}', 'reset')->name('reset');
     Route::post('/reset-password', 'update')->name('update');
 });
+
+// Route::controller(ResetPasswordController::class)->name('password.')->middleware('guest')->group(function(){
+//     // send password reset link
+//     Route::get('/forgot-password', 'request')->name('request');
+//     Route::post('/forgot-password', 'email')->name('email');
+//     // reset password
+//     Route::get('/reset-password/{token}', 'reset')->name('reset');
+//     Route::post('/reset-password', 'update')->name('update');
+// });
