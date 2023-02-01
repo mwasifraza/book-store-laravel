@@ -47,8 +47,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" title="Notifications">
-                            <i class="fa-solid fa-bell"></i>
+                        <a class="nav-link mx-2 position-relative" href="#" title="Notifications">
+                            <i class="fa-solid fa-bell"></i> 
+                            <span class="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-danger">
+                                {{ count(auth()->user()->notifications) }}
+                                <span class="visually-hidden">unread notifications</span>
+                            </span>
                         </a>
                     </li>
                     </li>
