@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Models\Category;
 use App\Models\Book;
 use App\Models\User;
+use App\Notifications\NewBookAdded;
 
 class AdminDashboardController extends Controller
 {
@@ -41,6 +43,9 @@ class AdminDashboardController extends Controller
         if($path = $request->file('cover')->storeAs('public/', $bookname)){
             $request->merge(['cover_photo' => "storage/{$bookname}"]);
             $book = Book::create($request->except('cover'));
+
+            $users = User::where('role', 'user')->get();
+            Notification::send($users, new NewBookAdded($book));
 
             return redirect()->route('admin.books.page', ['msg' => 'new book added']);
         }

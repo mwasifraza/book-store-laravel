@@ -87,24 +87,24 @@ Route::controller(AdminDashboardController::class)->prefix('admin')->middleware(
     Route::get('/dashboard/users', 'users')->name('admin.users.page');
 });
 
-
-Route::controller(ResetPasswordTokenController::class)->name('password.')->middleware('guest')->group(function(){
-    // send password reset link
-    Route::get('/forgot-password', 'request')->name('request');
-    Route::post('/forgot-password', 'email')->name('email');
-    // code verify
-    Route::get('/forgot-password/recover', 'verify')->name('verify');
-    Route::post('/forgot-password/recover', 'verify_code')->name('verify.code');
-    // reset password
-    Route::get('/reset-password/{token}', 'reset')->name('reset');
-    Route::post('/reset-password', 'update')->name('update');
-});
-
-// Route::controller(ResetPasswordController::class)->name('password.')->middleware('guest')->group(function(){
+// Forget password with 4-digit code, but need some upgradation
+// Route::controller(ResetPasswordTokenController::class)->name('password.')->middleware('guest')->group(function(){
 //     // send password reset link
 //     Route::get('/forgot-password', 'request')->name('request');
 //     Route::post('/forgot-password', 'email')->name('email');
+//     // code verify
+//     Route::get('/forgot-password/recover', 'verify')->name('verify');
+//     Route::post('/forgot-password/recover', 'verify_code')->name('verify.code');
 //     // reset password
 //     Route::get('/reset-password/{token}', 'reset')->name('reset');
 //     Route::post('/reset-password', 'update')->name('update');
 // });
+
+Route::controller(ResetPasswordController::class)->name('password.')->middleware('guest')->group(function(){
+    // send password reset link
+    Route::get('/forgot-password', 'request')->name('request');
+    Route::post('/forgot-password', 'email')->name('email');
+    // reset password
+    Route::get('/reset-password/{token}', 'reset')->name('reset');
+    Route::post('/reset-password', 'update')->name('update');
+});

@@ -42,10 +42,20 @@
             <ul class="navbar-nav ms-auto">
                 @if(auth()->check())
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route(auth()->user()->role.'.dashboard') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route(auth()->user()->role.'.dashboard') }}" title="Dashboard">
+                            <i class="fa-solid fa-house"></i>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Notification</a>
+                        <a class="nav-link" href="#" title="Notifications">
+                            <i class="fa-solid fa-bell"></i>
+                        </a>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" title="Messages">
+                            <i class="fa-solid fa-comment"></i>
+                        </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->firstname." ".auth()->user()->lastname }}</a>
@@ -97,6 +107,15 @@
 @endif
 
 <div class="container py-4">
+    @if (auth()->check() && auth()->user()->notifications)
+        @foreach (auth()->user()->notifications as $notification)
+            <div class="alert alert-primary" role="alert">
+                New book has been added <b>{{ $notification->data['title'] }}</b>, Check it out!
+                {{-- <a href="#">Mark as Read</a> --}}
+            </div>            
+        @endforeach
+    @endif
+
     @yield('main')
 </div>
 
