@@ -71,13 +71,10 @@
                         <div class="dropdown-menu notification-menu dropdown-menu-start rounded-0 px-1" aria-labelledby="dropdownId">
                             @if(isset(auth()->user()->unreadNotifications[0]))
                                 @foreach (auth()->user()->unreadNotifications as $notification)
-                                    <span class="dropdown-item">
+                                    <a class="dropdown-item" title="Mark as Read"
+                                    href="{{ route('markAsRead', ['role' => auth()->user()->role, 'id' => $notification->id]) }}">
                                         {!! $notification->data['content'] !!}
-                                        <a class="btn btn-sm btn-link" 
-                                           href="{{ route('markAsRead', ['role' => auth()->user()->role, 'id' => $notification->id]) }}">
-                                            Read
-                                        </a>
-                                    </span>            
+                                    </a>            
                                 @endforeach
                             @else
                                 <span class="dropdown-item disabled">

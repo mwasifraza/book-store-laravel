@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\NewUserRegistered;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use App\Http\Requests\SignupRequest;
@@ -19,8 +20,12 @@ class RegisterController extends Controller
         $request->merge(['phone' => $request->countrycode.$request->phone]);
         $request->merge(['password' => Hash::make($request->password)]);
         $user = User::create($request->all());
+
+        $admin = User::where('role', 'admin')->first();
+        $admin->notify(new NewUserRegistered($user));
+
         Auth::login($user);
         // event(new Registered($user));
-        return redirect()->route('user.dashboard', ['msg' => 'inserted successfully']);
+        return redirect()->route('user.dashboard', ['msg' => 'created successfully']);
     }
 }
