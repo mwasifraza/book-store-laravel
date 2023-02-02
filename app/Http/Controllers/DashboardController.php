@@ -45,6 +45,16 @@ class DashboardController extends Controller
     }
 
 
+    // mark as read notification
+    public function markAsRead($role, $id){
+        $userUnreadNotification = Auth::user()->unreadNotifications->where('id', $id)->first();
+        if($userUnreadNotification) {
+            $userUnreadNotification->markAsRead();
+        }
+        return back();
+    }
+
+
     // avatar
     public function upload(){
         return view('update-avatar');

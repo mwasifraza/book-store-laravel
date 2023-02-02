@@ -25,7 +25,7 @@ class NewBookAdded extends Notification
     public function toArray($notifiable)
     {
         return [
-            'title' => $this->book->title,
+            'content' => "New book <b>".$this->book->title."</b> has been added, Check it out!",
         ];
     }
 }

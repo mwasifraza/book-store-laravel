@@ -52,6 +52,8 @@ Route::controller(DashboardController::class)->prefix('{role}')->middleware(['au
     Route::post('/settings/profile', 'update_profile')->name('update.profile');
     Route::post('/settings/account', 'update_account')->name('update.account');
     Route::post('/settings/password', 'update_password')->name('update.password');
+    // read notification
+    Route::get('notification/read/{id}', 'markAsRead')->name('markAsRead');
     // update avatar
     Route::get('/upload/avatar', 'upload')->name('upload.avatar');
     Route::post('/upload/avatar', 'upload_avatar')->name('upload.action');

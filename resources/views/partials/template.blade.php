@@ -26,6 +26,19 @@
         color: rgba(var(--bs-dark-rgb)) !important;
         background-color: rgba(var(--bs-warning-rgb)) !important;
     }
+    .dropdown-menu.notification-menu{
+        width: 360px;
+    }
+    .dropdown-menu.notification-menu .dropdown-item{
+        white-space: normal;
+    }
+    .dropdown-menu.notification-menu .dropdown-item:not(:last-child){
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .dropdown-item:active {
+        background-color: unset;
+        color: unset;
+    }
 </style>
 </head>
 <body>
@@ -43,22 +56,39 @@
                 @if(auth()->check())
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route(auth()->user()->role.'.dashboard') }}" title="Dashboard">
-                            <i class="fa-solid fa-house"></i>
+                            <i class="fa-solid fa-house fa-lg"></i>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2 position-relative" href="#" title="Notifications">
-                            <i class="fa-solid fa-bell"></i> 
-                            <span class="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-danger">
-                                {{ count(auth()->user()->notifications) }}
-                                <span class="visually-hidden">unread notifications</span>
-                            </span>
+                    <li class="nav-item dropdown mx-2">
+                        <a class="nav-link" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Notification"><i class="fa-solid fa-bell fa-lg"></i>
+                            @if(count(auth()->user()->unreadNotifications) > 0)
+                                <span class="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {{ count(auth()->user()->unreadNotifications) }}
+                                </span>
+                            @endif
                         </a>
-                    </li>
+                        {{-- notification dropdown menu --}}
+                        <div class="dropdown-menu notification-menu dropdown-menu-start rounded-0 px-1" aria-labelledby="dropdownId">
+                            @if(isset(auth()->user()->unreadNotifications[0]))
+                                @foreach (auth()->user()->unreadNotifications as $notification)
+                                    <span class="dropdown-item">
+                                        {!! $notification->data['content'] !!}
+                                        <a class="btn btn-sm btn-link" 
+                                           href="{{ route('markAsRead', ['role' => auth()->user()->role, 'id' => $notification->id]) }}">
+                                            Read
+                                        </a>
+                                    </span>            
+                                @endforeach
+                            @else
+                                <span class="dropdown-item disabled">
+                                    No new notification found
+                                </span> 
+                            @endif
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" title="Messages">
-                            <i class="fa-solid fa-comment"></i>
+                            <i class="fa-solid fa-comment fa-lg"></i>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
@@ -111,15 +141,6 @@
 @endif
 
 <div class="container py-4">
-    @if (auth()->check() && auth()->user()->notifications)
-        @foreach (auth()->user()->notifications as $notification)
-            <div class="alert alert-primary" role="alert">
-                New book has been added <b>{{ $notification->data['title'] }}</b>, Check it out!
-                {{-- <a href="#">Mark as Read</a> --}}
-            </div>            
-        @endforeach
-    @endif
-
     @yield('main')
 </div>
 
