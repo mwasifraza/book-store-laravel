@@ -15,7 +15,7 @@ Admin Dashboard | Book Store
         </div>
         <br>
         <div>
-            <h3>{{ auth()->user()->firstname." ".auth()->user()->lastname }} <small class="text-muted">({{ '@'.auth()->user()->username }})</small></h3>
+            <h3>{{ auth()->user()->fullname }} <small class="text-muted">({{ '@'.auth()->user()->username }})</small></h3>
         </div>
     </div>
     <div class="col-sm-8 p-3">

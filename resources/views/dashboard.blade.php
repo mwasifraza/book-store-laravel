@@ -14,7 +14,7 @@ User Dashboard | Book Store
         </div>
         <br>
         <div>
-            <h3>{{ auth()->user()->firstname." ".auth()->user()->lastname }} <small class="text-muted">({{ '@'.auth()->user()->username }})</small></h3>
+            <h3>{{ auth()->user()->fullname }} <small class="text-muted">({{ '@'.auth()->user()->username }})</small></h3>
         </div>
     </div>
     <div class="col-sm-8 p-3">
@@ -24,7 +24,7 @@ User Dashboard | Book Store
                     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                         <ul class="navbar-nav">
                             @foreach ($categories as $category)
-                                @if (count($category->books) > 0)
+                                @if ($category->books->count() > 0)
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('user.dashboard', ['cat' => $category->id]) }}">
                                             {{ $category->category_name }}

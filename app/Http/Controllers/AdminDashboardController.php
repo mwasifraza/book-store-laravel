@@ -6,25 +6,27 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AddBookRequest;
 use App\Http\Requests\UpdateBookRequest;
-use App\Models\Category;
-use App\Models\Book;
-use App\Models\User;
+use App\Models\{
+    Category,
+    Book,
+    User,
+};
 
 class AdminDashboardController extends Controller
 {
     public function index(){
         return view('admin.dashboard', [
-            'total_user' => count(User::all()),
-            'verified_user' => count(User::where('email_verified_at', '!=', Null)->get()),
-            'total_book' => count(Book::all()),
-            'total_category' => count(Category::all()),
+            'total_user' => User::all()->count(),
+            'verified_user' => User::where('email_verified_at', '!=', Null)->get()->count(),
+            'total_book' => Book::all()->count(),
+            'total_category' => Category::all()->count(),
         ]);
     }
 
 
     // books
     public function all_books(){
-        return view('admin.books', ['books' => Book::paginate(7)]);
+        return view('admin.books', ['books' => Book::latest()->paginate(7)]);
     }
 
     public function add_book(){
@@ -77,7 +79,7 @@ class AdminDashboardController extends Controller
 
     // category
     public function all_categories(){
-        return view('admin.categories', ['categories' => Category::paginate(7)]);
+        return view('admin.categories', ['categories' => Category::latest()->paginate(7)]);
     }
 
     public function add_category(){

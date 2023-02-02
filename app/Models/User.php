@@ -41,6 +41,15 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    protected $append = [
+        'fullname',
+    ];
+
+    //accessor
+    public function getFullnameAttribute(){
+        return $this->firstname." ".$this->lastname;
+    }
+
     // mutators
     // store names with first capital word
     public function setFirstnameAttribute($value){

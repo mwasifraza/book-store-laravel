@@ -13,7 +13,7 @@ Available Categories | Book Store
             </div>
             <div class="ms-3 d-flex align-items-center">
                 <div>
-                    <h4 class="m-0">{{ auth()->user()->firstname." ".auth()->user()->lastname }}</h4>
+                    <h4 class="m-0">{{ auth()->user()->fullname }}</h4>
                     <h6 class="text-muted m-0">{{ '@'.auth()->user()->username }}</h6>
                 </div>
             </div>

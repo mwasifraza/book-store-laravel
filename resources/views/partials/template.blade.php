@@ -29,11 +29,18 @@
     .dropdown-menu.notification-menu{
         width: 360px;
     }
+    .dropdown-menu.notification-menu::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 4px;
+        width: 14px;
+        height: 14px;
+        background-color: white;
+        transform: rotate(45deg) translateY(-50%);
+    }
     .dropdown-menu.notification-menu .dropdown-item{
         white-space: normal;
-    }
-    .dropdown-menu.notification-menu .dropdown-item:not(:last-child){
-        border-bottom: 1px solid #f0f0f0;
     }
     .dropdown-item:active {
         background-color: unset;
@@ -70,11 +77,14 @@
                         {{-- notification dropdown menu --}}
                         <div class="dropdown-menu notification-menu dropdown-menu-start rounded-0 px-1" aria-labelledby="dropdownId">
                             @if(isset(auth()->user()->unreadNotifications[0]))
+                                <span class="dropdown-header py-0 text-primary">Unread Notifications</span>
                                 @foreach (auth()->user()->unreadNotifications as $notification)
-                                    <a class="dropdown-item" title="Mark as Read"
-                                    href="{{ route('markAsRead', ['role' => auth()->user()->role, 'id' => $notification->id]) }}">
+                                    <a title="Mark as Read" class="dropdown-item @if(!$loop->last){{ "border-bottom" }}@endif" 
+                                       href="{{ route('markAsRead', ['role' => auth()->user()->role, 'id' => $notification->id]) }}">
                                         {!! $notification->data['content'] !!}
-                                    </a>            
+                                        <br>
+                                        <small class="text-muted">{{ $notification->created_at->diffForHumans() }}</small>
+                                    </a>
                                 @endforeach
                             @else
                                 <span class="dropdown-item disabled">
@@ -89,7 +99,7 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->firstname." ".auth()->user()->lastname }}</a>
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->fullname }}</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownId">
                             <a class="dropdown-item" href="{{ route('settings', ['role' => auth()->user()->role]) }}">Settings</a>
                             <a class="dropdown-item" href="#">Help</a>
