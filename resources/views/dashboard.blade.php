@@ -43,10 +43,10 @@ User Dashboard | Book Store
                 @include('partials.modals.book-modal')
                 <div class="card mb-3">
                     <div class="card-body bg-light d-flex">
-                        <div class="bg-white d-flex justify-content-center align-items-center w-25" style="height:200px;">
+                        <div class="d-flex justify-content-center align-items-center w-25" style="height:200px;">
                             <img src="{{ asset($book->cover_photo) }}" alt="book cover" class="h-100">
                         </div>
-                        <div class="ms-3 w-75">
+                        <div class="ms-3 w-75 d-flex flex-column">
                             <h4 class="m-0">{{ $book->title }}</h4>
                             <div class="h6">
                                 <span class="me-2">
@@ -67,7 +67,7 @@ User Dashboard | Book Store
                             <div class="mt-3">
                                 <p>{{ substr($book->description, 0 , 180)."..." }}</p>
                             </div>
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex justify-content-between mt-auto">
                                 <h5 class="text-muted">Rs. {{ $book->price }}</h5>
                                 <div>
                                     <button class="btn btn-secondary btn-sm px-4">Buy Now</button>

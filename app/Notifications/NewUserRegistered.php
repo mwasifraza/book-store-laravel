@@ -28,7 +28,7 @@ class NewUserRegistered extends Notification
     public function toArray($notifiable)
     {
         return [
-            'content' => "<b>".$this->user->firstname." ".$this->user->lastname."</b> just created a new account."
+            'content' => "<b>".$this->user->fullname."</b> just created a new account."
         ];
     }
 }

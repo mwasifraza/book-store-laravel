@@ -75,7 +75,7 @@
                             @endif
                         </a>
                         {{-- notification dropdown menu --}}
-                        <div class="dropdown-menu notification-menu dropdown-menu-start rounded-0 px-1" aria-labelledby="dropdownId">
+                        <div class="dropdown-menu notification-menu dropdown-menu-start rounded-0" aria-labelledby="dropdownId">
                             @if(isset(auth()->user()->unreadNotifications[0]))
                                 <span class="dropdown-header py-0 text-primary">Unread Notifications</span>
                                 @foreach (auth()->user()->unreadNotifications as $notification)
