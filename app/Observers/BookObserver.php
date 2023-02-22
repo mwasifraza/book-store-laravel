@@ -4,7 +4,7 @@ namespace App\Observers;
 
 use App\Models\{User, Book};
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\NewBookAdded;
+use App\Notifications\{NewBookAdded, BookUpdated};
 
 class BookObserver
 {
@@ -28,7 +28,8 @@ class BookObserver
      */
     public function updated(Book $book)
     {
-        // pp($book);
+        $users = User::where('role', 'user')->whereNotNull('email_verified_at')->get();
+        Notification::send($users, new BookUpdated($book));
     }
 
     /**
