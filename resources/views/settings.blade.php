@@ -45,7 +45,7 @@ User Settings | Book Store
                             </div>
 
                             <div class="tab-pane fade" id="notification" role="tabpanel" aria-labelledby="notification-tab" tabindex="0">
-                                <h2 class="text-muted">Notification Settings</h2>
+                                @include('partials.settings.notifications')
                             </div>
 
                         </div>

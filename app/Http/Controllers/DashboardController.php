@@ -44,6 +44,11 @@ class DashboardController extends Controller
         }
     }
 
+    public function update_notification(Request $request){
+        // update notification settings for user
+        pp($request->all());
+    }
+
 
     // mark as read notification
     public function markAsRead($role, $id){

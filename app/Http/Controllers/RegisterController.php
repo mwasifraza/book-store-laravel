@@ -9,6 +9,7 @@ use Illuminate\Auth\Events\Registered;
 use App\Http\Requests\SignupRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -20,6 +21,11 @@ class RegisterController extends Controller
         $request->merge(['phone' => $request->countrycode.$request->phone]);
         $request->merge(['password' => Hash::make($request->password)]);
         $user = User::create($request->all());
+
+        // DB::table('user_notification_settings')->insert([
+        //     'user_id' => $user->id,
+        //     'muted_notification' => json_encode([]),
+        // ]);
 
         $admin = User::where('role', 'admin')->first();
         $admin->notify(new NewUserRegistered($user));

@@ -27,9 +27,12 @@
         background-color: rgba(var(--bs-warning-rgb)) !important;
     }
     .dropdown-menu.notification-menu{
+        /* position: static; */
         width: 360px;
+        height: 400px;
+        overflow: auto;
     }
-    .dropdown-menu.notification-menu::before{
+    .dropdown-menu.notification-menu:before{
         content: "";
         position: absolute;
         top: 0;
