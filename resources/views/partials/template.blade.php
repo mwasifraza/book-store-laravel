@@ -29,7 +29,7 @@
     .dropdown-menu.notification-menu{
         /* position: static; */
         width: 360px;
-        height: 400px;
+        max-height: 400px;
         overflow: auto;
     }
     .dropdown-menu.notification-menu:before{

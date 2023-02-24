@@ -26,8 +26,10 @@ User Dashboard | Book Store
                             @foreach ($categories as $category)
                                 @if ($category->books->count() > 0)
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('user.dashboard', ['cat' => $category->id]) }}">
+                                        <a class="nav-link @if(request()->get('cat') == $category->id) active fw-bold @endif" 
+                                            href="{{ route('user.dashboard', ['cat' => $category->id]) }}">
                                             {{ $category->category_name }}
+                                            
                                         </a>
                                     </li>      
                                 @endif                                                      
@@ -51,7 +53,8 @@ User Dashboard | Book Store
                             <div class="h6">
                                 <span class="me-2">
                                     <i class="fa-solid fa-tag text-muted"></i>&nbsp; 
-                                    <a href="" class="text-decoration-none text-muted fw-normal">
+                                    <a href="{{ route('user.dashboard', ['cat' => $book->category_info->id]) }}" 
+                                        class="text-decoration-none text-muted fw-normal">
                                         {{ $book->category_info->category_name }}
                                     </a>
                                 </span>
