@@ -1,8 +1,16 @@
 <div>
-    <h1>Hello {{ $name }}</h1>
-
-    <p>Your password reset code is: <b>{{ $code }}</b></p>
-
-    <p>Regards,</p>
-    <p>Online Book Store</p>
+    <h2>Hi {{ $user->full_name }},</h2>
+    <p>
+        Need to reset your password?<br>
+        Use your secret code!
+    </p>
+    <h3>{{ $code }}</h3>
+    <p>
+        If you did not forget your password, you can ignore this email.
+    </p>
+    <p>
+        Regards,
+        <br>
+        Online Book Store
+    </p>
 </div>
