@@ -35,7 +35,7 @@ Available Books | Book Store
                                 <th scope="col">ID</th>
                                 <th scope="col">Title</th>
                                 {{-- <th scope="col">Description</th> --}}
-                                {{-- <th scope="col">Category</th> --}}
+                                <th scope="col">Category</th>
                                 <th scope="col">Author</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Action</th>
@@ -48,7 +48,11 @@ Available Books | Book Store
                                         <td scope="row">{{ $book->id }}</td>
                                         <td scope="row">{{ $book->title }}</td>
                                         {{-- <td scope="row">{{ $book->description }}</td> --}}
-                                        {{-- <td scope="row">{{ $book->category_info->category_name }}</td> --}}
+                                        <td scope="row">
+                                            @foreach ($book->categories_info as $category)
+                                                {{ $category->category_name }}{{ $loop->last ? "" : "," }}
+                                            @endforeach
+                                        </td>
                                         <td scope="row">{{ $book->author }}</td>
                                         <td scope="row">{{ $book->price }}</td>
                                         <td>

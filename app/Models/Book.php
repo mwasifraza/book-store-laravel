@@ -16,14 +16,13 @@ class Book extends Model
         'title',
         'description',
         'cover_photo',
-        // 'category',
         'author',
         'price',
     ];
 
-    // public function category_info()
-    // {
-    //     return $this->belongsTo(Category::class, 'category');
-    // }
+    public function categories_info()
+    {
+        return $this->belongsToMany(Category::class, 'book_category');
+    }
 
 }
