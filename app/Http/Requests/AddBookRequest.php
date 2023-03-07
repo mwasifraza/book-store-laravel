@@ -26,7 +26,7 @@ class AddBookRequest extends FormRequest
         return [
             'title' => 'required',
             'description' => 'required',
-            'category' => 'required',
+            'categories' => 'required',
             'author' => 'required',
             'price' => 'required|numeric',
             'cover' => 'required|max:2048|mimes:jpg,png,jpeg',

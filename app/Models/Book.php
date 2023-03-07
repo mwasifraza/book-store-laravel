@@ -13,18 +13,17 @@ class Book extends Model
     protected $primaryKey = "id";
 
     protected $fillable = [
-        'id',
         'title',
         'description',
         'cover_photo',
-        'category',
+        // 'category',
         'author',
         'price',
     ];
 
-    public function category_info()
-    {
-        return $this->belongsTo(Category::class, 'category');
-    }
+    // public function category_info()
+    // {
+    //     return $this->belongsTo(Category::class, 'category');
+    // }
 
 }

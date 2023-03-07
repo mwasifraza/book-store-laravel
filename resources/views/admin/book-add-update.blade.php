@@ -47,8 +47,8 @@
                     {{-- category --}}
                     <div class="mb-3">
                         <label for="" class="form-label">Category</label>
-                        <select name="category" class="form-select">
-                            <option value="">-- Category --</option>
+                        <select name="categories[]" class="form-select" size="8" multiple>
+                            <option value="" disabled>-- Category --</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}" 
                                     @if (isset($book))
@@ -60,7 +60,7 @@
                             @endforeach
                         </select>
                         <small class="form-text text-danger">
-                            @error('category') {{ $message }} @enderror
+                            @error('categories') {{ $message }} @enderror
                         </small>
                     </div>
 

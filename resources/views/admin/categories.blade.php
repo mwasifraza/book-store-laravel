@@ -33,7 +33,7 @@ Available Categories | Book Store
                             <tr class="text-center">
                                 <th scope="col">ID</th>
                                 <th scope="col">Category Name</th>
-                                <th scope="col">No. of Books</th>
+                                {{-- <th scope="col">No. of Books</th> --}}
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -43,7 +43,7 @@ Available Categories | Book Store
                                     <tr class="text-center">
                                         <td scope="row">{{ $category->id }}</td>
                                         <td scope="row">{{ $category->category_name }}</td>
-                                        <td scope="row">{{ count($category->books) }}</td>
+                                        {{-- <td scope="row">{{ count($category->books) }}</td> --}}
                                         <td>
                                             <a href="{{ route('admin.category.update.page', ['id' => $category->id]) }}" class="btn btn-sm btn-secondary">Update</a>
                                             <a href="{{ route('admin.category.remove.action', ['id' => $category->id]) }}" class="btn btn-sm btn-danger">Remove</a>

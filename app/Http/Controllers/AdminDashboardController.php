@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AddBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Models\{
+    BookCategory,
     Category,
     Book,
     User,
@@ -43,6 +44,9 @@ class AdminDashboardController extends Controller
         if($path = $request->file('cover')->storeAs('public/', $bookname)){
             $request->merge(['cover_photo' => "storage/{$bookname}"]);
             $book = Book::create($request->except('cover'));
+            foreach($request->categories as $category){
+                BookCategory::create(['book_id' => $book->id, 'category_id' => $category]);
+            }
             return redirect()->route('admin.books.page', ['msg' => 'new book added']);
         }
     }
