@@ -74,6 +74,9 @@ class AdminDashboardController extends Controller
     }
 
     public function remove_book_action($id){
+        // delete categories
+        $book_category = BookCategory::where('book_id', $id)->delete();
+        // delete book
         $book = Book::find($id);
         unlink($book->cover_photo);
         $book->delete();

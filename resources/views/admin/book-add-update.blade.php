@@ -46,22 +46,27 @@
 
                     {{-- category --}}
                     <div class="mb-3">
-                        <label for="" class="form-label">Category</label>
-                        <select name="categories[]" class="form-select" size="8" multiple>
-                            <option value="" disabled>-- Category --</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" 
-                                    @if (isset($book))
-                                        {{ $book->category === $category->id ? "selected" : "" }}
-                                    @endif>
-
-                                    {{ $category->category_name }}
-                                </option>
+                        @if (isset($book))
+                        <label for="" class="form-label">Selected Categories</label>
+                        <ul>
+                            @foreach($book->categories_info as $category)
+                            <li>{{ $category->category_name }}</li>
                             @endforeach
-                        </select>
-                        <small class="form-text text-danger">
-                            @error('categories') {{ $message }} @enderror
-                        </small>
+                        </ul>
+                        @else
+                            <label for="" class="form-label">Category</label>
+                            <select name="categories[]" class="form-select" size="8" multiple>
+                                <option value="" disabled>-- Category --</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">                                    
+                                        {{ $category->category_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <small class="form-text text-danger">
+                                @error('categories') {{ $message }} @enderror
+                            </small>
+                        @endif
                     </div>
 
                     {{-- author --}}
