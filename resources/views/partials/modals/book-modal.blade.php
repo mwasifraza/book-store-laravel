@@ -15,17 +15,19 @@
             <div class="text-center mb-3">
                 <span class="me-2">
                     <i class="fa-solid fa-tag text-muted"></i>&nbsp; 
-                    <a href="" class="text-decoration-none text-muted fw-normal">
-                        {{ $book->category_info->category_name }}
-                    </a>
+                    <span class="text-decoration-none text-muted fw-normal">
+                      @foreach($book->categories_info as $category)
+                        {{ $category->category_name }}{{ $loop->last ? "" : "," }}
+                      @endforeach
+                    </span>
                 </span>
                 <span class="me-2">
                     <i class="fa-solid fa-user text-muted"></i>&nbsp;
-                    <a href="" class="text-decoration-none text-muted fw-normal">{{ $book->author }}</a>
+                    <span class="text-decoration-none text-muted fw-normal">{{ $book->author }}</span>
                 </span>
                 <span class="me-2">
                     <i class="fa-solid fa-calendar text-muted"></i>&nbsp;
-                    <a href="" class="text-decoration-none text-muted fw-normal">{{ $book->created_at->format("d-m-Y") }}</a>
+                    <span class="text-decoration-none text-muted fw-normal">{{ $book->created_at->format("d-m-Y") }}</span>
                 </span>
             </div>
             <p>{{ $book->description }} Order yours in just {{ $book->price }} rupees only!</p>

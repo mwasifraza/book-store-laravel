@@ -29,7 +29,6 @@ User Dashboard | Book Store
                                         <a class="nav-link @if(request()->get('cat') == $category->id) active fw-bold @endif" 
                                             href="{{ route('user.dashboard', ['cat' => $category->id]) }}">
                                             {{ $category->category_name }}
-                                            
                                         </a>
                                     </li>      
                                 @endif                                                      
@@ -53,10 +52,12 @@ User Dashboard | Book Store
                             <div class="h6">
                                 <span class="me-2">
                                     <i class="fa-solid fa-tag text-muted"></i>&nbsp; 
-                                    <a href="{{ route('user.dashboard', ['cat' => $book->category_info->id]) }}" 
-                                        class="text-decoration-none text-muted fw-normal">
-                                        {{ $book->category_info->category_name }}
-                                    </a>
+                                    @foreach($book->categories_info as $category)
+                                        <a href="{{ route('user.dashboard', ['cat' => $category->id]) }}" 
+                                            class="text-decoration-none text-muted fw-normal">
+                                            {{ $category->category_name }}{{ $loop->last ? "" : "," }}
+                                        </a>
+                                    @endforeach
                                 </span>
                                 <span class="me-2">
                                     <i class="fa-solid fa-user text-muted"></i>&nbsp;
