@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,7 @@ class LoginController extends Controller
     }
 
     public function login(LoginRequest $request){
-        if (Auth::attempt(['username'=>$request->username, 'password'=>$request->password, 'role' => 'user'])) {
+        if (Auth::attempt(['username'=>$request->username, 'password'=>$request->password, 'role' => User::ROLE_USER])) {
             $request->session()->regenerate();
             return redirect()->route('user.dashboard');
         }
@@ -27,7 +28,7 @@ class LoginController extends Controller
     }
 
     public function admin_login(LoginRequest $request){
-        if (Auth::attempt(['username'=>$request->username, 'password'=>$request->password, 'role' => 'admin'])) {
+        if (Auth::attempt(['username'=>$request->username, 'password'=>$request->password, 'role' => User::ROLE_ADMIN])) {
             $request->session()->regenerate();
             return redirect()->route('admin.dashboard');
         }

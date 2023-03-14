@@ -15,6 +15,12 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $table = "users";
     protected $primaryKey = "id";
 
+    public const ROLE_ADMIN = "admin";
+    public const ROLE_USER = "user";
+
+    public const MALE = "male";
+    public const FEMALE = "female";
+
     protected $fillable = [
         'firstname',
         'lastname',

@@ -16,7 +16,7 @@ class BookObserver
      */
     public function created(Book $book)
     {
-        $users = User::where('role', 'user')->whereNotNull('email_verified_at')->get();
+        $users = User::where('role', User::ROLE_USER)->whereNotNull('email_verified_at')->get();
         Notification::send($users, new NewBookAdded($book));
     }
 
@@ -28,7 +28,7 @@ class BookObserver
      */
     public function updated(Book $book)
     {
-        $users = User::where('role', 'user')->whereNotNull('email_verified_at')->get();
+        $users = User::where('role', User::ROLE_USER)->whereNotNull('email_verified_at')->get();
         Notification::send($users, new BookUpdated($book));
     }
 
