@@ -24,8 +24,12 @@ Available Categories | Book Store
             <div class="card-body">
                 <h4 class="text-uppercase border-start border-5 border-warning ps-3">Categories</h4>
                 <hr>
-                <div class="d-flex justify-content-end">
-                    <a href="{{ route('admin.category.add.page') }}" class="btn btn-warning mb-3 px-5">Add Category</a>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <form action="{{ route('admin.categories.page') }}" class="d-flex align-items-center">
+                        <input type="search" name="search" class="form-control form-control-sm" placeholder="Search Category">
+                        <button class="btn btn-secondary btn-sm ms-2">Search</button>
+                    </form>
+                    <a href="{{ route('admin.category.add.page') }}" class="btn btn-warning px-5">Add Category</a>
                 </div>
                 <div class="table-responsive">
                     <table class="table">
@@ -45,6 +49,7 @@ Available Categories | Book Store
                                         <td scope="row">{{ $category->category_name }}</td>
                                         <td scope="row">{{ count($category->books) }}</td>
                                         <td>
+                                            <a href="{{ route('admin.books.page', ['category' => $category->id]) }}" class="btn btn-sm btn-secondary">View Books</a>
                                             <a href="{{ route('admin.category.update.page', ['id' => $category->id]) }}" class="btn btn-sm btn-secondary">Update</a>
                                             <a href="{{ route('admin.category.remove.action', ['id' => $category->id]) }}" class="btn btn-sm btn-danger">Remove</a>
                                         </td>

@@ -26,8 +26,18 @@ class AdminDashboardController extends Controller
 
 
     // books
-    public function all_books(){
-        return view('admin.books', ['books' => Book::latest()->paginate(7)]);
+    public function all_books(Request $request){
+        $books = Book::from('books as b')->select('b.*')
+        ->when($request->has('category'), function($q){
+            $q->join('book_category as bc', 'bc.book_id', '=', 'b.id')
+              ->where('bc.category_id', request('category'));
+        })
+        ->when($request->has('search'), function($q){
+            $q->where('title', 'like', '%'.request('search').'%');
+        })
+        ->latest()->paginate(7)->withQueryString();
+
+        return view('admin.books', ['books' => $books]);
     }
 
     public function add_book(){
@@ -85,8 +95,11 @@ class AdminDashboardController extends Controller
 
 
     // category
-    public function all_categories(){
-        return view('admin.categories', ['categories' => Category::latest()->paginate(7)]);
+    public function all_categories(Request $request){
+        $category = Category::when($request->has('search'), function($q){
+            $q->where('category_name', 'like', '%'.request('search').'%');
+        })->latest()->paginate(7)->withQueryString();
+        return view('admin.categories', ['categories' => $category]);
     }
 
     public function add_category(){
