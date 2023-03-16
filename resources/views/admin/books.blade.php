@@ -26,6 +26,9 @@ Available Books | Book Store
                 <hr>
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <form action="{{ route('admin.books.page') }}" class="d-flex align-items-center">
+                        @if(request('category'))
+                            <input type="hidden" name="category" value="{{ request('category') }}">
+                        @endif
                         <input type="search" name="search" class="form-control form-control-sm" placeholder="Search Books">
                         <button class="btn btn-secondary btn-sm ms-2">Search</button>
                     </form>

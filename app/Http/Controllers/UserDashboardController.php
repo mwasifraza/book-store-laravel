@@ -11,15 +11,17 @@ use Illuminate\Support\Facades\Auth;
 class UserDashboardController extends Controller
 {
     public function index(Request $request){
-        if(isset($request->cat)){
-            $books = Category::find($request->cat)->books()->latest()->paginate(5)->withQueryString();
-        }else{
-            $books = Book::latest()->paginate(5);
-        }
+        $books = Book::from('books as b')
+        ->select('b.*')
+        ->when($request->has('cat'), function($q){
+            $q->join('book_category as bc', 'bc.book_id', '=', 'b.id')
+              ->where('bc.category_id', request('cat'));
+        })
+        ->latest()->paginate(5)->withQueryString();
+
         return view('dashboard', [
             'books' => $books,
             'categories' => Category::all(),
-        
         ]);
     }
 }
