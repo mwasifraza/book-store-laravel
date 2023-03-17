@@ -1,0 +1,14 @@
+[
+	{"id": "1", "category_name": "Adventure"},
+	{"id": "2", "category_name": "Classics"},
+	{"id": "3", "category_name": "Crime"},
+	{"id": "4", "category_name": "Fantasy"},
+	{"id": "5", "category_name": "Horror"},
+	{"id": "6", "category_name": "Mystery"},
+	{"id": "7", "category_name": "Poetry"},
+	{"id": "8", "category_name": "Plays"},
+	{"id": "9", "category_name": "Science Fiction"},
+	{"id": "10", "category_name": "Thrillers"},
+	{"id": "11", "category_name": "War"},
+	{"id": "12", "category_name": "Biography"}
+]

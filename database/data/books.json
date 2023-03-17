@@ -1,0 +1,90 @@
+[
+    {
+        "id": "1",
+        "title": "The Little Prince",
+        "description": "Adventure novels whisk readers off to faraway lands. Unlike fantasy novels, they tend to stay in the real world (although there’s often a lot of crossover between these genres). Children’s novels often fall into the adventure category, since they’re designed to spark imaginations.",
+        "cover_photo": "",
+        "author": "Antoine de Saint-Exupéry",
+        "price": "1000"
+    },
+    {
+        "id": "2",
+        "title": "She: A History of Adventure",
+        "description": "Adventure novels whisk readers off to faraway lands. Unlike fantasy novels, they tend to stay in the real world (although there’s often a lot of crossover between these genres). Children’s novels often fall into the adventure category, since they’re designed to spark imaginations.",
+        "cover_photo": "",
+        "author": "H. Rider Haggard",
+        "price": "1500"
+    },
+    {
+        "id": "3",
+        "title": "A Tale Of Two Cities",
+        "description": "Classics encompass a range of genres — but they always stand the test of time. Classics include centuries-old stories like Homer’s Odyssey, but also more modern novels that have drawn significant acclaim and attention, such Margaret Atwood’s The Handmaid’s Tale and George Orwell’s 1984.",
+        "cover_photo": "",
+        "author": "Charles Dickens",
+        "price": "1600"
+    },
+    {
+        "id": "4",
+        "title": "The Godfather",
+        "description": "From murder mysteries to true crime stories, crime is an enduringly popular genre. It tells terrifying stories of wrongdoing, and the search for justice. This genre can be very lucrative, with many authors becoming household names, such as Agatha Christie, Val McDermid, and Harlan Coben.",
+        "cover_photo": "",
+        "author": "Mario Puzo",
+        "price": "1200"
+    },
+    {
+        "id": "5",
+        "title": "Harry Potter and the Philosopher's Stone",
+        "description": "Fantasy books are probably the most popular modern book genre. Thanks to series like Harry Potter and Percy Jackson, it’s particularly popular with young adult readers, although more and more fantasy novels are written for adults (George RR Martin, we’re looking at you). These stories take readers on a journey beyond the known world, to places conjured in the author’s imagination.",
+        "cover_photo": "",
+        "author": "JK Rowling",
+        "price": "3500"
+    },
+    {
+        "id": "6",
+        "title": "Rebecca",
+        "description": "People never tire of being terrified — so horror novels remain some of the bestselling books in the world. While the genre has origins in Gothic stories like Mary Shelley’s Frankenstein, authors like Stephen King and R L Stine have modernised horror for adults and children alike. The genre has also spawned hundreds of popular horror movies.",
+        "cover_photo": "",
+        "author": "Daphne Du Maurier",
+        "price": "950"
+    },
+    {
+        "id": "7",
+        "title": "Angels & Demons",
+        "description": "Mystery is often seen as a subset of the crime genre, but it’s so popular and enduring that it deserves a category of its own. Agatha Christie, master of the whodunit, is the second bestselling author in history, after William Shakespeare. Mysteries are full of suspense, and usually keep the reader guessing until the last moment.",
+        "cover_photo": "",
+        "author": "Dan Brown",
+        "price": "1900"
+    },
+    {
+        "id": "8",
+        "title": "Nineteen Eighty-Four",
+        "description": "From Stan Lee to Ursula K Le Guin, there’s no shortage of famous sci-fi writers. The genre has grown in popularity thanks to the boom in science fiction films based on books, such as Dune and 2001: A Space Odyssey. Sci-fi is often combined with fantasy, and there are some similarities between these types of books. But sci-fi books are usually bound by the laws of science as we know them in the real world.",
+        "cover_photo": "",
+        "author": "George Orwell",
+        "price": "2500"
+    },
+    {
+        "id": "9",
+        "title": "Solaris",
+        "description": "If you think you know Solaris from the 2002 Steven Soderbergh film, the original book may come as a bit of a surprise. Written by Polish writer Stanislaw Lem in 1961, this short novel is heavier on philosophy than plot. It follows a team of humans on a space station who are trying to understand the mysterious living ocean on the planet Solaris, with little success – their research is limited to lengthy descriptions that paint a vibrant picture of the alien planet but fail to elucidate how it works. As they poke and prod, Solaris ends up exposing more about them than it does about itself, with the book demonstrating the futility of humans trying to comprehend something not of their world.",
+        "cover_photo": "",
+        "author": "Stanislaw Lem",
+        "price": "2800"
+    },
+    {
+        "id": "10",
+        "title": "The Left Hand of Darkness",
+        "description": "Le Guin alternated between genres during her prolific career, and this intricate novel came out the year after the classic fantasy book A Wizard of Earthsea. The bulk of the action takes place on Winter, a remote Earth-like planet where it’s cold all year round, and everyone is the same gender. It was one of the first novels to touch on ideas of androgyny – which is viewed from the lens of protagonist Genly Ai, a visitor from Earth who struggles to understand this alien culture.",
+        "cover_photo": "",
+        "author": "Ursula K. Le Guin",
+        "price": "2150"
+    },
+    {
+        "id": "11",
+        "title": "A Game of Thrones",
+        "description": "A Game of Thrones is the first novel in A Song of Ice and Fire, a series of fantasy novels by American author George R. R. Martin. It was first published on August 1, 1996. The novel won the 1997 Locus Award and was nominated for both the 1997 Nebula Award and the 1997 World Fantasy Award.",
+        "cover_photo": "",
+        "author": "George R. R. Martin",
+        "price": "4100"
+    }
+]
